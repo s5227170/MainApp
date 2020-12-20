@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import './App.css';
 
-import Header from './components/sections/Header';
+import Header from './components/pages/Header';
 import SignUp from './components/pages/SignUp';
 import SignIn from './components/pages/SignIn';
 import ForgotPassword from './components/pages/ForgotPassword';
@@ -13,7 +13,7 @@ import Browser from './components/pages/Browser';
 import PrivateRoute from './components/auth/PrivateRoute';
 import PublicRoute from './components/auth/PublicRoute';
 import AdminRoute from './components/auth/AdminRoute';
-import Loader from './components/UI/Loader';
+import Loader from './components/UI/Loader/Loader';
 import firebase from './firebase/config';
 import { getUserById, setLoading, setNeedVerification } from './store/actions/authActions';
 import { RootState } from './store';

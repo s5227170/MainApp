@@ -4,7 +4,7 @@ import { SignUpData, AuthAction, SET_USER, User, SET_LOADING, SIGN_OUT, SignInDa
 import { RootState } from '..';
 import firebase from '../../firebase/config';
 
-// Sign up
+// Create user
 export const signup = (data: SignUpData, onError: () => void): ThunkAction<void, RootState, null, AuthAction> => {
     return async dispatch => {
         try {

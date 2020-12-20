@@ -1,30 +1,20 @@
-.form {
-    max-width: 600px;
-    margin:0 auto;
-}
-
-.loader-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.custom-loader {
-    border: 3px solid #f1f1f1;
-    border-top: 3px solid #00d1b2;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin is linear infinite;
-}
-
 @keyFrames spin {
     0% { transform: rotate(0def);}
     100% { transform: rotate(360deg);}
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Special Elite', cursive;
+    font-family: 'Andika New Basic', sans-serif !important;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;  
+    color: rgb(90, 88, 88);
+}
+

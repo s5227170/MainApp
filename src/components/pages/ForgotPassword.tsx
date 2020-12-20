@@ -1,9 +1,9 @@
 import React, { FC, useState, FormEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Input from '../UI/Input';
-import Button from '../UI/LogButton';
-import Message from '../UI/Message';
+import Input from '../UI/Input/Input';
+import Button from '../UI/LogButton/LogButton';
+import Message from '../UI/Message/Message';
 import { sendPasswordResetEmail, setError, setSuccess } from '../../store/actions/authActions';
 import { RootState } from '../../store';
 

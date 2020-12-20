@@ -1,5 +1,7 @@
 import React, { FC, ButtonHTMLAttributes } from 'react';
 
+import './LogButton.css';
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     text: string;
     className?: string;
@@ -7,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 
 const Button: FC<ButtonProps> = ({ text, className, onClick, type, disabled }) => {
     return(
-        <button type={type} className={`button ${className}`} onClick={onClick} disabled={disabled}>{text}</button>
+        <button type={type} className={`button button-color ${className}`} onClick={onClick} disabled={disabled}>{text}</button>
     );
 }
 

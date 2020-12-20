@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
-import { useHistory, Link, Redirect } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Button from '../UI/LogButton';
+import Button from '../UI/LogButton/LogButton';
+import DropMenu from '../UI/DropMenu/DropMenu';
 import { RootState } from '../../store';
 import { signout } from '../../store/actions/authActions';
+import './stylesheets/Header.css';
 
 const Header: FC = () => {
     const history = useHistory();
@@ -16,23 +18,20 @@ const Header: FC = () => {
         dispatch(signout());
     }
     return(
-        <nav className="navbar">
-            <div className="navbar-container">
-                <div className="navbar-logo">
-                    <Link className="navbar-item" to={!authenticated ? "/" : "/dashboard"}>AppName</Link>
+        <nav>
+            <div className="navbar-section">
+                <div className="navbar-logo-section">
+                    <Link className="logo" to={!authenticated ? "/" : "/dashboard"}>AppName</Link>
                 </div>
 
                 <div className="navbar-end">
                     <div className="navbar-items">
-                        {!authenticated ? <div className="buttons">
-                            <Button text="Sign up" onClick={() => history.push('/signup')} className="is-primary"/>
+                        {!authenticated ? <div className="buttons-section">
+                            <Button text="Sign up" onClick={() => history.push('/signup')} />
                             <Button text="Sign in" onClick={() => history.push('/signin')} />
                             </div>
                             :
-                            <div>
-                                <Button text="Sign out" onClick={logoutClickHandler} />
-                                {admin ? <Button text="Products" onClick={() => history.push('../product-management')}/> : false}
-                            </div>
+                            <DropMenu />
                         }
                     </div>
                 </div>

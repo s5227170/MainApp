@@ -63,6 +63,8 @@ interface SetSuccessAction{
     payload: string;
 }
 
+
+
 export type AuthAction = 
 SetUserAction | 
 SetLoadingAction |

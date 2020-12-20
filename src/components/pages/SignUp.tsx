@@ -1,11 +1,12 @@
 import React, { FC, useState, FormEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Input from '../UI/Input';
-import Button from '../UI/LogButton';
-import Message from '../UI/Message';
+import Input from '../UI/Input/Input';
+import Button from '../UI/LogButton/LogButton';
+import Message from '../UI/Message/Message';
 import { signup, setError } from '../../store/actions/authActions';
 import { RootState } from '../../store';
+import './stylesheets/SignUp.css';
 
 const SignUp: FC = () => {
     const [firstName, setFirstName] = useState('');
@@ -30,10 +31,10 @@ const SignUp: FC = () => {
     }
 
     return(
-        <section className="section">
-            <div className="container">
-                <h2 className="has-text-centered.is-size-2 mb-3">Sign up</h2>
-                <form className="form" onSubmit={submitHandler}>
+        <section className="section-signup">
+            <div>
+                <h2>Sign up</h2>
+                <form className="form-signup" onSubmit={submitHandler}>
                     {error && <Message type='danger' msg={error} />}
                     <Input
                         name="firstName"
@@ -58,7 +59,7 @@ const SignUp: FC = () => {
                         placeholder="Password"
                         label="Password"
                     />
-                    <Button text={loading ? "Loading..." : "Sign up"} className="is-primary is-fullwidth mt-5" disabled={loading} />
+                    <Button text={loading ? "Loading..." : "Sign up"} disabled={loading} />
                 </form>
             </div>
         </section>

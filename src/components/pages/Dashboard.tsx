@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Message from '../UI/Message';
+import Message from '../UI/Message/Message';
 import { setSuccess } from '../../store/actions/authActions';
 import { RootState } from '../../store';
 
@@ -19,7 +19,7 @@ const Dashboard: FC = () => {
         <section className="section">
             <div className="container">
                 {needVerification && <Message type="success" msg="Please verify your email address"/>}
-                <h1 className="is-size-1">Wellcome { user?.firstName }</h1>
+                <h1 className="is-size-1">Wellcome { user['firstName'] }</h1>
             </div>
         </section>
     );
