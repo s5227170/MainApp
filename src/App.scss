@@ -1,0 +1,36 @@
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-20 { font-size: 20px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+$color-primary: #d6dce9;
+$color-primary-light: #e1e7f5;
+$color-primary-dark: #bbc6df;
+
+$color-secondary: #39966b;
+
+
+html{
+    font-size: 62.5%;
+    min-height: 100%;
+}
+
+body{
+    font-family: 'Special Elite', cursive;
+    font-family: 'Noto Sans JP', sans-serif !important;
+    font-weight: 400;
+    font-size: 16px;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: $color-primary;
+}

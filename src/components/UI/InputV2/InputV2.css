@@ -1,0 +1,61 @@
+.inputv2-wrapper{
+    width: 250px;
+    height: auto;
+    background: #fff;
+    padding: 5px;
+    padding-top: 15px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.inputv2-wrapper .inputv2-input-data{
+    height: 40px;
+    width: 100%;
+    
+    position: relative;
+}
+.inputv2-wrapper .inputv2-input-data input{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    border-bottom: 2px solid silver;
+    padding-top: 15px;
+}
+.inputv2-input-data input:focus ~ label,
+.inputv2-input-data input:valid ~ label{
+    transform: translateY(-20px);
+    font-size: 15px;
+    color: #4158d0;
+    
+}
+.inputv2-wrapper .inputv2-input-data label{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: gray;
+    pointer-events: none;
+    transform: all 0.3s ease;
+}
+.inputv2-wrapper .inputv2-input-data .inputv2-underline{
+    position: absolute;
+    bottom: 0px;
+    height: 2px;
+    width: 100%;
+}
+.inputv2-input-data .inputv2-underline:before{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: #4158d0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+.inputv2-input-data input:focus ~ .inputv2-underline:before,
+.inputv2-input-data input:valid ~ .inputv2-underline:before{
+    transform: scaleX(1);
+}

@@ -1,0 +1,133 @@
+.table{
+    background: #ffffff;
+    width: 70%;
+    margin: auto;
+    border-radius: 4px ;
+    border-spacing: 0 ;
+}
+.table{
+    background-color: #214486;
+    color: rgb(255, 255, 255);
+    font-weight: 100;
+    font-size: medium;
+    border-left: 2px solid #214486;
+    border-right: 2px solid #214486;
+    -webkit-box-shadow: 0px 14px 17px -9px rgba(0,0,0,0.9); 
+    box-shadow: 0px 14px 17px -9px rgba(0,0,0,0.9);
+}
+.table thead  th, td, tr{
+    padding: 10px 15px 10px 15px;
+    text-align: center;
+    height: 35px;
+    
+}
+.table > tbody *{
+    text-align: left !important;
+    background: rgb(255, 255, 255);
+    color: #214486;
+    font-size: medium;
+    font-weight: 900;
+    text-align: left;
+    padding: 5px;
+    z-index: 5;
+}
+.table td{
+    border-bottom: 1px solid #214486;
+}
+.table tr:last-child td:first-child {
+    border-radius: 0px 0px 0px 4px;
+}
+.table tr:last-child td:last-child {
+    border-radius: 0px 0px 4px 0px;
+}
+.list{
+    position: absolute;
+    bottom: 5px;
+    list-style-type: none;
+    vertical-align: bottom;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.list button{
+    margin: 0px 2px;
+    background: #214486;
+    color: #ffffff;
+    padding: 4px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid silver;
+    cursor: pointer;
+}
+.list button:hover{
+    margin: 0px 2px;
+    background: lighten(#214486, 15%);
+    color: darken(#ffffff, 30%);
+    padding: 4px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid silver;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+.list button:active{
+    margin: 0px 2px;
+    background: lighten(#214486, 15%);
+    color: darken(#ffffff, 30%);
+    padding: 4px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid silver;
+    cursor: pointer;
+    transform: scale(0.95);
+}
+
+.paginationNext{
+    
+    margin: 0px 5px;
+}
+.paginationPrev{
+    
+    margin: 0px 5px;
+}
+.paginationLink{
+    width: 25px;
+    height: 25px;
+    display: inline;
+}
+#update{
+    color: #918c52 !important;
+}
+#update span:hover{
+    width: 120%;
+    height: 120%;
+}
+#update:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+    border-radius: 4px;
+}
+#delete{
+    color: #ca3434 !important;
+}
+#delete span:hover{
+    width: 120%;
+    height: 120%;
+}
+#delete:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+    border-radius: 4px;
+}
+.paginationEllipsis{
+    display: inline;
+}
+.paginationLinkCurrent{
+    background: #d83838 !important;
+}
+.paginationLinkCurrent:disabled:hover{
+    background: #d83838;
+    transform: scale(1);
+    color: #ffffff;
+}

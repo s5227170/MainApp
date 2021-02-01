@@ -1,7 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch } from 'react-router-dom';
-import './App.css';
+import './App.scss';
+
 
 import Header from './components/pages/Header';
 import SignUp from './components/pages/SignUp';
@@ -9,7 +10,7 @@ import SignIn from './components/pages/SignIn';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Homepage from './components/pages/Homepage';
 import Dashboard from './components/pages/Dashboard';
-import Browser from './components/pages/Browser';
+import Browser from './components/pages/ProductManagement';
 import PrivateRoute from './components/auth/PrivateRoute';
 import PublicRoute from './components/auth/PublicRoute';
 import AdminRoute from './components/auth/AdminRoute';

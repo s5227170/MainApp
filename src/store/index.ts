@@ -3,14 +3,16 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import authReducer from './reducers/authReducer';
+import prodReducer from './reducers/productReducer';
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    prod: prodReducer
 });
 
 const store = createStore(
     rootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
+    composeWithDevTools(applyMiddleware(thunk))    
 );
 
 export type RootState = ReturnType<typeof rootReducer>;

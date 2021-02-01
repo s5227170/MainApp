@@ -1,13 +1,14 @@
 import React, { FC, useState, FormEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import Input from '../UI/Input/Input';
-import Button from '../UI/LogButton/LogButton';
+import Button from '../UI/Button/Button';
 import Message from '../UI/Message/Message';
 import { signin, setError } from '../../store/actions/authActions';
 import { RootState } from '../../store';
-import './stylesheets/SignIn.css';
+import classes from './stylesheets/SignIn.module.scss';
+
 
 const SignIn: FC = () => {
     const [email, setEmail] = useState('');
@@ -31,10 +32,10 @@ const SignIn: FC = () => {
     }
 
     return(
-        <section className="section-signin">
+        <section className={classes.section}>
             <div>
                 <h2>Sign in</h2>
-                <form className="form" onSubmit={submitHandler}>
+                <form  onSubmit={submitHandler}>
                     {error && <Message type='danger' msg={error} />}
                     <Input
                     type="email"
@@ -52,8 +53,10 @@ const SignIn: FC = () => {
                         placeholder="Password"
                         label="Password"
                     />
-                    <p><Link to="/forgot-password">Forgot Password</Link></p>
-                    <Button text={loading ? "Loading..." : "Sign In"} disabled={loading} />
+                    <p><NavLink to="/forgot-password">Forgot Password</NavLink></p>
+                    <div className={classes.buttonContainer}>
+                        <Button text={loading ? "Loading..." : "Sign In"} disabled={loading} />
+                    </div>
                 </form>
             </div>
         </section>

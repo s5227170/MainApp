@@ -56,6 +56,7 @@ export const getUserById = (id: string): ThunkAction<void, RootState, null, Auth
     }
 }
 
+//Loading
 export const setLoading = (value: boolean): ThunkAction<void, RootState, null, AuthAction> => {
     return dispatch => {
         dispatch ({

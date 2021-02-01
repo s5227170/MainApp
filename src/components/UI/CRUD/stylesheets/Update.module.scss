@@ -1,0 +1,309 @@
+.section{
+    margin-top: 100px !important;
+    padding-top: 60px !important;
+    height: auto;
+    width: 600px;
+    margin: auto;
+    padding: 10px;
+    text-align: left;
+    background: #f7f4eb;
+    box-shadow: -1px 1px 5px 6px rgba(136,128,128,0.75);
+    font-size: large;
+    font-weight: 600;
+    position: relative;
+    border-radius: 4px;
+}
+.section label{
+    display: inline-block;
+    width: 140px;
+}
+.section select{
+    display: inline-block;
+    width: 140px;
+    margin-left: 140px;
+}
+.submit{
+    position: absolute;
+    margin: 20px;
+    bottom: 0;
+    right: 0;
+}
+.imgContainer{
+    height: 240px;
+    width: 280px;
+    margin: auto;
+}
+.imgShowcase{
+    padding: 20px;
+    padding-bottom: 35px !important;
+    height: 100%;
+    width: 100%;
+}
+.underpageSpace{
+    height: 100px;
+}
+.avatar-hide{
+    display: none !important;
+}
+.newState{
+    background: rgb(173, 135, 76);
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+    height: 100%;
+    background:  #f7f4eb;
+    padding: 10px;
+}
+.currentstate-reduced label{
+    text-align: left !important;
+}
+.line{
+    position: absolute;
+    display: inline-block;
+    height: 95%;
+    width: 2px;
+    background-color: #230903;
+    left: 49%;
+}
+.dividerOld{
+    width: 97%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.divider{
+    display: block;
+    width: 100%;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.avatarPreview{
+    height: 100%;
+    width: 100%;
+}
+.imageContainer{
+    display: inline-block;
+    width: 270px;
+    height: 200px;
+}
+.imageANDprice{
+    display: block;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#price{
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 150px;
+    margin-left: 50px;
+    vertical-align: top;
+    width: 10%;
+    padding-top: 0px;
+    color: #292929 !important;
+}
+#priceHR1{
+    position: absolute;
+    left: 70%;
+    display: inline-block;
+    width: 200px;
+    vertical-align: top !important;
+}
+#priceHR2{
+    position: absolute;
+    left: 70%;
+    top: 40px;
+    display: inline-block;
+    width: 200px;
+    vertical-align: top !important;
+}
+#updated{
+    margin-bottom: 50px;
+}
+.upldBtn{
+    float: right !important;
+    margin-bottom: 10px;
+}
+.return{
+    display: block;
+    border: 1px;
+    margin: 5px;
+    width: 60px;
+    height: 35px;
+    position: absolute;
+    top: 10px;
+    border-radius: 10px;
+}
+.return:hover{
+    transform: scale(1.15);
+    cursor: pointer;
+}
+.return:active{
+    transform: scale(0.99);
+}
+.return:after{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    box-shadow: 1px 1px 10px 6px rgba(3, 3, 3, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    transition: all  1.7s;
+    border-radius: 10px;
+}
+#return-icon{
+    position: absolute;
+    bottom: -3px;
+    left: 10px;
+    display: block;
+}
+.img-upld-btn{
+    width: 100px;
+    padding: 7px;
+    border: 1px solid #a4b6dd;
+    background:#fff0;
+    color: silver;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #5f81c0;
+    outline: none;
+    position: relative;
+}
+.img-upld-btn:hover{
+    transform: translateY(-3px);
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,.4);
+    color: lighten(#b2cae9, 15%);
+}
+.img-upld-btn:active{
+    transform: translateY(-1px);
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 5px 10px rgba(0,0,0,.4);
+}
+.img-upld-btn:disabled{
+    background: #d83838;
+}
+.img-upld-btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all  1.7s;
+}
+.img-upld-btn::after{
+    background-color: #5f81c0;
+}
+.img-upld-btn:disabled::after{
+    background-color: #d83838;
+}
+.img-upld-btn:hover::after{
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+.featureManagement{
+    display: flex;
+    justify-content: space-between;
+}
+.form{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    width: 100%;
+}
+.select{
+    padding: 8px 12px;
+    background: #fff;
+    border: 2px solid silver;
+    cursor: pointer;
+    width: 250px !important;
+    border-radius: 4px;
+    margin-left: 0!important;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"><polygon points="0,0 100, 0 50, 50" style="fill:%23666666;" /></svg>');
+    background-position: right 10px top 50%;
+    background-repeat: no-repeat;
+    background-size: 10px;
+    padding: 10px;
+}
+.select:focus,
+.select:hover{
+    outline: none;
+    border: 2px solid rgb(161, 159, 159);
+}
+.select option{
+    background: #fff;
+}
+.urlHide{
+    display: none;
+}
+.currencyWrapper{
+    width: 250px;
+    height: auto;
+    background: #fff;
+    padding: 5px;
+    padding-top: 15px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.currencyWrapper .currencyInput{
+    height: 40px;
+    width: 100%;
+    
+    position: relative;
+}
+.currencyWrapper .currencyInput input{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    border-bottom: 2px solid silver;
+}
+.currencyInput input:focus ~ label,
+.currencyInput input:valid ~ label{
+    transform: translateY(-20px);
+    font-size: 15px;
+    color: #4158d0;
+}
+.currencyWrapper .currencyInput label{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: gray;
+    pointer-events: none;
+    transform: all 0.3s ease;
+}
+.currencyWrapper .currencyInput .underline{
+    position: absolute;
+    bottom: 0px;
+    height: 2px;
+    width: 100%;
+}
+.currencyInput .underline:before{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: #4158d0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease
+}
+.currencyInput input:focus ~ .underline:before,
+.currencyInput input:valid ~ .underline:before{
+    transform: scaleX(1);
+}

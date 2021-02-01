@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Button from '../UI/LogButton/LogButton';
+import logo from '../../static/img/logo.png';
+import Button from '../UI/Button/Button';
 import DropMenu from '../UI/DropMenu/DropMenu';
 import { RootState } from '../../store';
 import { signout } from '../../store/actions/authActions';
-import './stylesheets/Header.css';
+import classes from './stylesheets/Header.module.scss';
+
 
 const Header: FC = () => {
     const history = useHistory();
@@ -19,16 +21,17 @@ const Header: FC = () => {
     }
     return(
         <nav>
-            <div className="navbar-section">
-                <div className="navbar-logo-section">
-                    <Link className="logo" to={!authenticated ? "/" : "/dashboard"}>AppName</Link>
+            <div className={classes.section}>
+                <div className={classes.navbarLogo}>
+                    <NavLink activeClassName={classes.logoLink} to={!authenticated ? "/" : "/dashboard"}><img className={classes.logo}  src={logo} alt="logo"/></NavLink>
                 </div>
 
-                <div className="navbar-end">
-                    <div className="navbar-items">
-                        {!authenticated ? <div className="buttons-section">
-                            <Button text="Sign up" onClick={() => history.push('/signup')} />
-                            <Button text="Sign in" onClick={() => history.push('/signin')} />
+                <div className={classes.navbarEnd}>
+                    <div className={classes.navbarItems}>
+                        {!authenticated ? 
+                            <div className={classes.buttons}>
+                                <Button className={classes.button1} text="Sign up" onClick={() => history.push('/signup')} />
+                                <Button className={classes.button2} text="Sign in" onClick={() => history.push('/signin')} />
                             </div>
                             :
                             <DropMenu />

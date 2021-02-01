@@ -1,0 +1,111 @@
+.browserNavbar{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: inline;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    position: relative;
+    margin: 0 !important;
+}
+
+.crudButtons{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 0px;
+    background: #ffffff;
+    padding: 5px;
+    border: 2px solid #214486;
+    border-radius: 6px;
+    z-index: 150;
+    
+    animation: expand;
+    animation-timing-function: linear;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#option1:hover,
+#option2:hover{
+    cursor: pointer;
+    background: none;
+    transform: scale(1.05);
+}
+.optionContainer h4{
+    padding-top: 5px;
+    position: absolute;
+    cursor: pointer;
+    width: auto;
+    display: inline;
+    animation: appear;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-delay: .6s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+.optionContainer:hover{
+    background: #c0c0c0;
+    border-radius: 4px;
+}
+.optionContainer:active{
+    transform: scale(0.97);
+}
+.crudButtons h3{
+    text-align: center;
+    animation: appear;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-delay: .6s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+#option1{
+    display: inline;
+    animation: appear;
+    animation-timing-function: linear;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    color: #214486; 
+}
+
+#option2{
+    display: inline;
+    animation: appear;
+    animation-timing-function: linear;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    color: #214486;
+}
+
+@keyframes appear{
+    0%{
+        opacity: 0
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes expand{
+    0%{
+        
+        width: 0px;
+    }
+    100%{
+       
+        width: 200px;
+    }
+}
+
+/* Add animation for sidebar */

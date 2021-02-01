@@ -1,0 +1,120 @@
+.section{
+    margin-top: 100px !important;
+    padding-top: 60px !important;
+    height: auto;
+    width: 600px;
+    margin: auto;
+    background:  #f7f4eb;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: -1px 1px 5px 6px rgba(136,128,128,0.3);
+    position: relative;
+}
+.imgContainer{
+    height: 240px;
+    width: 280px;
+    margin: auto;
+}
+.imgShowcase{
+    padding: 20px;
+    padding-bottom: 35px !important;
+    height: 100%;
+    width: 100%;
+}
+.underpageSpace{
+    height: 20px;
+}
+.return{
+    display: block;
+    border: 1px;
+    margin: 5px;
+    width: 60px;
+    height: 35px;
+    position: absolute;
+    top: 10px;
+    border-radius: 10px;
+}
+.return:hover{
+    transform: scale(1.15);
+    cursor: pointer;
+}
+.return:active{
+    transform: scale(0.99);
+}
+.return:after{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    box-shadow: 1px 1px 10px 6px rgba(3, 3, 3, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    transition: all  1.7s;
+    border-radius: 10px;
+}
+#return-icon{
+    position: absolute;
+    bottom: -3px;
+    left: 10px;
+    display: block;
+}
+.currencyWrapper{
+    width: 250px;
+    height: auto;
+    background: #fff;
+    padding: 5px;
+    padding-top: 15px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.currencyWrapper .currencyInput{
+    height: 40px;
+    width: 100%;
+    
+    position: relative;
+}
+.currencyWrapper .currencyInput input{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    border-bottom: 2px solid silver;
+}
+.currencyInput input:focus ~ label,
+.currencyInput input:valid ~ label{
+    transform: translateY(-20px);
+    font-size: 15px;
+    color: #4158d0;
+}
+.currencyWrapper .currencyInput label{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: gray;
+    pointer-events: none;
+    transform: all 0.3s ease;
+}
+.currencyWrapper .currencyInput .underline{
+    position: absolute;
+    bottom: 0px;
+    height: 2px;
+    width: 100%;
+}
+.currencyInput .underline:before{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: #4158d0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease
+}
+.currencyInput input:focus ~ .underline:before,
+.currencyInput input:valid ~ .underline:before{
+    transform: scaleX(1);
+}

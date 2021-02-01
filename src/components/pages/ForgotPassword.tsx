@@ -2,10 +2,11 @@ import React, { FC, useState, FormEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Input from '../UI/Input/Input';
-import Button from '../UI/LogButton/LogButton';
+import Button from '../UI/Button/Button';
 import Message from '../UI/Message/Message';
 import { sendPasswordResetEmail, setError, setSuccess } from '../../store/actions/authActions';
 import { RootState } from '../../store';
+import classes from './stylesheets/ForgotPassword.module.scss';
 
 const ForgotPassword: FC = () => {
     const [email, setEmail] = useState('');
@@ -32,10 +33,10 @@ const ForgotPassword: FC = () => {
         }
 
     return(
-        <section className="section">
-            <div className="container">
-                <h2 className="has-text-centered.is-size-2 mb-3">Reset password</h2>
-                <form className="form" onSubmit={submitHandler}>
+        <section className={classes.section}>
+            <div className={classes.container}>
+                <h2>Reset password</h2>
+                <form className={classes.form} onSubmit={submitHandler}>
                     {error && <Message type='danger' msg={error} />}
                     {success && <Message type='success' msg={success} />}
                     <Input
@@ -46,7 +47,7 @@ const ForgotPassword: FC = () => {
                         placeholder="Email address"
                         label="Email address"
                     />
-                    <Button text={loading ? "Loading..." : "Send password reset email"} className="is-primary is-fullwidth mt-5" disabled={loading} />
+                    <Button text={loading ? "Loading..." : "Send password reset email"} className={classes.button} disabled={loading} />
                 </form>
             </div>
         </section>

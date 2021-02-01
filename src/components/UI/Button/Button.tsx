@@ -1,6 +1,6 @@
 import React, { FC, ButtonHTMLAttributes } from 'react';
 
-import './LogButton.css';
+import './Button.css';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     text: string;
