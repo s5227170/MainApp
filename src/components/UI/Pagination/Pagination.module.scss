@@ -1,44 +1,62 @@
-.table{
-    background: #ffffff;
+.table-wrapper{
     width: 70%;
     margin: auto;
-    border-radius: 4px ;
-    border-spacing: 0 ;
 }
 .table{
-    background-color: #214486;
-    color: rgb(255, 255, 255);
-    font-weight: 100;
-    font-size: medium;
-    border-left: 2px solid #214486;
-    border-right: 2px solid #214486;
-    -webkit-box-shadow: 0px 14px 17px -9px rgba(0,0,0,0.9); 
-    box-shadow: 0px 14px 17px -9px rgba(0,0,0,0.9);
-}
-.table thead  th, td, tr{
-    padding: 10px 15px 10px 15px;
-    text-align: center;
-    height: 35px;
-    
-}
-.table > tbody *{
-    text-align: left !important;
-    background: rgb(255, 255, 255);
-    color: #214486;
-    font-size: medium;
-    font-weight: 900;
-    text-align: left;
-    padding: 5px;
-    z-index: 5;
-}
-.table td{
-    border-bottom: 1px solid #214486;
-}
-.table tr:last-child td:first-child {
-    border-radius: 0px 0px 0px 4px;
-}
-.table tr:last-child td:last-child {
-    border-radius: 0px 0px 4px 0px;
+    width: 100%;
+    margin: auto;
+    border-radius: 4px ;
+    border-spacing: 1;
+
+    &{
+        background-color: #365fac;
+        color: rgb(255, 255, 255);
+        font-weight: 100;
+        font-size: medium;
+        border-left: 2px solid #365fac;
+        border-right: 2px solid #365fac;
+        -webkit-box-shadow: 0px 14px 17px -9px rgba(0,0,0,0.9); 
+        box-shadow: 0px 14px 17px -9px rgba(0,0,0,0.9);
+        border-collapse: collapse;
+        border-radius: 4px;
+    }
+    & thead  th, td, tr{
+        padding: 10px 15px 10px 15px;
+        text-align: center;
+        height: 35px;
+    }
+    & tr:nth-child(even) {
+        background: #ffffff;
+    }
+    & tbody > tr:nth-child(odd) {
+        background: #e7dfce;
+    }
+    & > tbody *{
+        text-align: center !important;
+        color:#000000;
+        font-size: small;
+        font-weight: 900;
+        text-align: left;
+        padding: 5px;
+        z-index: 5;
+    }
+    & tr:last-child td:first-child {
+        border-radius: 0px 0px 0px 4px;
+    }
+    & tr:last-child td:last-child {
+        border-radius: 0px 0px 4px 0px;
+    }
+    &:last-child{
+        border-bottom: 2px solid #365fac;
+        border-radius: 4px;
+    }
+    & thead, tr{
+        border-radius: 4px;
+        border: 2px solid #365fac !important;
+    }
+    & tr:hover td{
+        background: #8b8a8a;
+    }
 }
 .list{
     position: absolute;
@@ -97,7 +115,8 @@
     display: inline;
 }
 #update{
-    color: #918c52 !important;
+    color: #918c52;
+    font-size: large !important;
 }
 #update span:hover{
     width: 120%;
@@ -109,7 +128,8 @@
     border-radius: 4px;
 }
 #delete{
-    color: #ca3434 !important;
+    color: #ca3434 ;
+    font-size: large !important;
 }
 #delete span:hover{
     width: 120%;
@@ -124,10 +144,76 @@
     display: inline;
 }
 .paginationLinkCurrent{
-    background: #d83838 !important;
+    background: #d83838;
 }
 .paginationLinkCurrent:disabled:hover{
     background: #d83838;
     transform: scale(1);
     color: #ffffff;
+}
+
+
+@media (max-width: 767px) {
+    .table {
+        display: block;
+        width: 100%;
+    
+        .table-wrapper:before{
+            content: "Scroll horizontally >";
+            display: block;
+            text-align: right;
+            font-size: 11px;
+            color: white;
+            padding: 0 0 10px;
+        }
+        & thead, .fl-table tbody, .fl-table thead th {
+            display: block;
+        }
+        & thead th:last-child{
+            border-bottom: none;
+        }
+        & thead {
+            float: left;
+        }
+        & tbody {
+            width: auto;
+            position: relative;
+            overflow-x: auto;
+        }
+        & td, .fl-table th {
+            padding: 20px .625em .625em .625em;
+            height: 60px;
+            vertical-align: middle;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 120px;
+            font-size: 13px;
+            text-overflow: ellipsis;
+        }
+        & thead th {
+            text-align: left;
+            border-bottom: 1px solid #f7f7f9;
+        }
+        & tbody tr {
+            display: table-cell;
+        }
+        & tbody tr:nth-child(odd) {
+            background: none;
+        }
+        & tr:nth-child(even) {
+            background: transparent;
+        }
+        & tr td:nth-child(odd) {
+            background: #F8F8F8;
+            border-right: 1px solid #E6E4E4;
+        }
+        & tr td:nth-child(even) {
+            border-right: 1px solid #E6E4E4;
+        }
+        & tbody td {
+            display: block;
+            text-align: center;
+        }
+    }
 }

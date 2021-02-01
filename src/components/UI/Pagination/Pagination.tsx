@@ -58,6 +58,7 @@ const Pagination: FC<paginationProps> = ({ data, itemsPerPage, startFrom }) => {
 
     return (
         <Fragment>
+            <div className={classes['table-wrapper']}>
             <table className={classes.table}>
                 <thead>
                     <tr>
@@ -91,6 +92,7 @@ const Pagination: FC<paginationProps> = ({ data, itemsPerPage, startFrom }) => {
                     ))}
                 </tbody>
             </table>
+            </div>
             <nav className={classes.pagination}>
                 
                 <ul className={classes.list}>

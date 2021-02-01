@@ -44,7 +44,8 @@ const List: FC = () => {
             const toArr: any = Object.entries(product_array).map(e => e[1]);
             setProducts(toArr);
             setItemID(itemIDs);
-            dispatch(setids(itemIDs));
+            if(itemID)
+            dispatch(setids(itemID));
         }
     }, [product_array])
     
@@ -54,7 +55,7 @@ const List: FC = () => {
     }
 
     const RefreshHandler = () => {
-        dispatch(settask(" "));     
+        dispatch(listproducts());
     }
     
     //The products are fetched as JSON, therefore they
@@ -63,12 +64,16 @@ const List: FC = () => {
     // as well as buttons for update and delete
     return(
         <div className={classes.section}>
-            <span id={style["side-menu-btn"]} className="material-icons md-36" onClick={showSidebarHandler}>
-                view_headline
-            </span>
-            <span id={style["refresh"]} className="material-icons md-36"  onClick={ RefreshHandler } >
-                cached
-            </span>
+            <div className={classes.left}>
+                <span id={style["side-menu-btn"]} className="material-icons md-36" onClick={showSidebarHandler}>
+                    view_headline
+                </span>
+            </div>
+            <div className={classes.right}>
+                <span id={style["refresh"]} className="material-icons md-36"  onClick={ RefreshHandler } >
+                    cached
+                </span>
+            </div>
             {backdrop?
             <BrowserNavbar/>
             :
