@@ -174,13 +174,16 @@ const Create: FC = () => {
             </div>
 
             <h2>Enter product details</h2>
-                <h3>Enter product features</h3>
+                <h3>Features</h3>
                 <hr className={classes.divider}></hr>
                 <div className={classes.featureManagement}>
                     {/* Buttons controlling the feature amount */}
-                    <button  className={style["custom-btn"]} onClick={addFeature} disabled={!loading2}>Add</button>
+                    <Button className="custom-btn" text="Add" onClick={addFeature} disabled={!loading2}/>
+                    <Button className="custom-btn" text="Remove" onClick={removeFeature} disabled={loading3}/>
+                    <Button className="custom-btn" text="Save" onClick={saveFeature} disabled={!loading3}/>
+                    {/* <button  className={style["custom-btn"]} onClick={addFeature} disabled={!loading2}>Add</button>
                     <button  className={style["custom-btn"]} onClick={removeFeature} disabled={loading3}>Remove</button>
-                    <button  className={style["custom-btn"]} onClick={saveFeature} disabled={!loading3}>Save</button>
+                    <button  className={style["custom-btn"]} onClick={saveFeature} disabled={!loading3}>Save</button> */}
                 </div>
                     {/* Add the features component here, it must get the number of fields, depending on the
                     parameter given, it should do this dynamically */}
@@ -188,13 +191,13 @@ const Create: FC = () => {
                     {/* ---- */}
                 
             
-                <h3>Upload a product image</h3>
+                <h3>Product Image</h3>
                 <hr className={classes.divider}></hr>
                 <div className={classes.imageManagement}>
                     <input id="real-file" hidden={true}  type="file" onChange={fileSelectedHandler}/>
                     <button id="custom-button" className={style["custom-btn"]} onClick={clickFileUpldHandler} disabled={fileSelected? true : false}>{fileSelected? "Uploaded..." : "Upload"}</button>
                 </div>
-            <h3>Set product details</h3>
+            <h3>Details</h3>
             <hr className={classes.divider}></hr>
             <form className={classes.form} onSubmit={submitHandler}>
             {error && <Message type='danger' msg={error} />}

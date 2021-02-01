@@ -1,6 +1,7 @@
 import React, { FC, ButtonHTMLAttributes } from 'react';
 
-import './Button.css';
+import styles from './Button.module.scss';
+import classes from './Button.module.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     text: string;
@@ -9,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 
 const Button: FC<ButtonProps> = ({ text, className, onClick, type, disabled }) => {
     return(
-        <button type={type} className={`button button-color ${className}`} onClick={onClick} disabled={disabled}>{text}</button>
+        <button id={styles["button"]} type={type} className={[classes.button].join(className)} onClick={onClick} disabled={disabled}>{text}</button>
     );
 }
 

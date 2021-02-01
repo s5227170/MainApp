@@ -1,0 +1,55 @@
+
+.button,
+.button:visited{
+        width: 80px;
+    height: 30px;
+    padding: 7px;
+    border: 1px solid #a4b6dd;
+    background:#fff0;
+    color: silver;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #5f81c0;
+    outline: none;
+    position: relative;
+    
+
+    &:hover{
+        transform: translateY(-3px);
+        border-radius: 4px;
+        outline: none;
+        box-shadow: 0 8px 20px rgba(0,0,0,.4);
+    }
+
+    &:active{
+        transform: translateY(-1px);
+        border-radius: 4px;
+        outline: none;
+        box-shadow: 0 5px 10px rgba(0,0,0,.4);
+    }
+    &:disabled{
+        background: #d83838;
+    }
+    &::after {
+        content: "";
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border-radius: 4px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all  1s;
+    }
+    &::after{
+        background-color: #5f81c0;
+    }
+    &:disabled::after{
+        background-color: #d83838;
+    }
+    &:hover::after{
+        transform: scaleX(1.2) scaleY(1.4);
+        opacity: 0;
+    }
+}

@@ -23,9 +23,7 @@ const Features: FC<featureProps> = ({featsNumber, feats, disabled, ids, number, 
     }
       
     return(
-            <div>
-                <hr className="divider"></hr>
-                <h3>Current features</h3>
+            <div>                
                 {featsNumber && feats?
                     feats.map((feat, index )=> {
                         return <InputV2 
@@ -45,7 +43,7 @@ const Features: FC<featureProps> = ({featsNumber, feats, disabled, ids, number, 
                 :
                     null
                 }
-            {!preview?
+            {preview?
             <Fragment>
                 <hr className="divider"></hr>
                 <h3>Please re-enter current features if you wish to save them</h3>
@@ -71,6 +69,8 @@ const Features: FC<featureProps> = ({featsNumber, feats, disabled, ids, number, 
             :
             null
             }
+            <br/>
+            <br/>
             </div>
         );
     } 
