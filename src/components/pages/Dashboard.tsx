@@ -25,10 +25,7 @@ const Dashboard: FC = () => {
 
     return (
         <section className={classes.section}>
-            <div className="main-container">
-                <h1 className="is-size-1">Wellcome { user['firstName'] }</h1>
-                {needVerification && <Message type="success" msg="Please verify your email address"/>}
-            </div>
+            
         </section>
     );
 }

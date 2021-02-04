@@ -32,6 +32,7 @@ export interface Product {
     reduced: boolean;
     old_price: number;
     new_price: number;
+    date: string;
 }
 
 export interface ProductState {

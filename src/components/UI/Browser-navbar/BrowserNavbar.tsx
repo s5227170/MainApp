@@ -28,16 +28,22 @@ const BrowserNavbar: FC = () => {
                         <div className={classes.crudButtons}>
                             <h3>Menu</h3>
                             <div className={classes.optionContainer}>
-                                <span id={styles['option1']} className="material-icons md-36 create" onClick={createHandler}>
+                                <span id={styles['option1']} className="material-icons md-36" onClick={createHandler}>
                                     add_box
                                 </span>
                                 <h4 onClick={createHandler}>Create a Product</h4>
                             </div>
                             <div className={classes.optionContainer}>
-                                <span id={styles['option2']} className="material-icons md-36 filter">
+                                <span id={styles['option2']} className="material-icons md-36">
                                     filter_alt
                                 </span>
-                                <h4>Filter Data</h4>
+                                <h4>Filter Products</h4>
+                            </div>
+                            <div className={classes.optionContainer}>
+                            <span id={styles['option3']} className="material-icons md-36">
+                                local_fire_department
+                            </span>
+                            <h4>Set a hot Product</h4>
                             </div>
                         </div>
                 </div>

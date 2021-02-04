@@ -32,7 +32,8 @@
 }
 
 #option1:hover,
-#option2:hover{
+#option2:hover,
+#option3:hover{
     cursor: pointer;
     background: none;
     transform: scale(1.05);
@@ -75,7 +76,7 @@
     animation-duration: 2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    color: #214486; 
+    color: #21862e; 
 }
 
 #option2{
@@ -85,7 +86,17 @@
     animation-duration: 2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    color: #214486;
+    color: #ddda3e;
+}
+
+#option3{
+    display: inline;
+    animation: appear;
+    animation-timing-function: linear;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    color: #ca452d;
 }
 
 @keyframes appear{

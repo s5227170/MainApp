@@ -38,13 +38,15 @@ const Update: FC<Product> = (Product) => {
     const [reduced, setReduced] = useState(Product.reduced);
     const [old_price, setOldPrice] = useState(Product.old_price);
     const [new_price, setNewPrice] = useState(Product.new_price);
+    const [features, setFeatures] = useState(0)
+    const [feature_array_existing, setFeatureArray_existing] = useState(Product.feature_array)
     //
     const dispatch = useDispatch();
     const history = useHistory();
     const { error } = useSelector((state: RootState) => state.prod);
-    const { feature_array } = useSelector((state: RootState) => state.prod);
     const { id } = useSelector((state: RootState) => state.prod);
-    
+    const { feature_array } = useSelector((state: RootState) => state.prod);
+    console.log(id)
     useEffect(() => {
         return () => {
             if(error) {
@@ -53,28 +55,32 @@ const Update: FC<Product> = (Product) => {
         }
     }, [error, dispatch]);
 
+    useEffect(() => {
+        setFeatures(feature_array_existing.length);
+    }, [])
+
     const submitHandler = async (e: FormEvent) => {
         e.preventDefault();
         setValidationLoading(true)
 
-        if(amount <3){
+        if(features < 3 || amount < 3){
             alert("You need at least 3 features in order to submit this product! If there already are 3, save themand try submitting again.")
-        }else if(!fileSelected){
+        }else if(!Product.avatar){
             alert("Product needs to have an avatar!")
         }else{    
             //const file = fileSelected;
-            if(!fileSelected) return;
-            
-            const storageRef = firebase.storage().ref('/images/');
-            const fileRef = storageRef.child(fileSelected.name)
-            
-            await fileRef.put(fileSelected)
-            const fileURL = await fileRef.getDownloadURL()
-
+            const date = Product.date;
+            if(fileSelected ){
+                const storageRef = firebase.storage().ref('/images/');
+                const fileRef = storageRef.child(fileSelected.name)
+                await fileRef.put(fileSelected)
+                const fileURL = await fileRef.getDownloadURL()
             setLoading(true);
-        
-        if(feature_array)
-        dispatch(updateproduct({id, title, type, feature_array, description, avatar: fileURL, price, reduced, old_price, new_price }, id, () => setLoading(false)));
+        dispatch(updateproduct(id, {id: Product.id, title, type, feature_array, description, avatar: fileURL , price, reduced, old_price, new_price, date }, () => setLoading(false)));
+            }else if(Product.avatar) {
+                setLoading(true);
+                dispatch(updateproduct(id, {id: Product.id, title, type, feature_array, description, avatar: Product.avatar, price, reduced, old_price, new_price, date }, () => setLoading(false)));
+            }
         setTimeout(() => {
             history.goBack();
         }, 1500);
@@ -112,6 +118,7 @@ const Update: FC<Product> = (Product) => {
             setLoading2(false);
             setFilled(false);
             setAmount(amount+1);
+            setFeatures(features+1)
         }
         
     }
@@ -119,6 +126,7 @@ const Update: FC<Product> = (Product) => {
     const removeFeature = () => {
         if(amount > 0){
             setAmount(amount-1);
+            setFeatures(features-1)
             dispatch(deletefeature(feature_array))
         }
     }
@@ -168,7 +176,7 @@ const Update: FC<Product> = (Product) => {
                         <button  className={style["img-upld-btn"]} onClick={removeFeature} disabled={loading3}>Remove Feature</button>
                         <button  className={style["img-upld-btn"]} onClick={saveFeature} disabled={!loading3}>Save Features</button>
                     </div>
-                    <Features featsNumber={Product.feature_array.length} feats={Product.feature_array} ids="feats" number={amount} onBlur={inputDataHandler} preview={false}/>
+                    <Features featsNumber={features} feats={Product.feature_array} ids="feats" number={amount} onBlur={inputDataHandler} preview={false} update/>
 
                     <br/>
                     <h3>Upload a product image</h3>

@@ -32,12 +32,12 @@ const Pagination: FC<paginationProps> = ({ data, itemsPerPage, startFrom }) => {
         document.getElementById("loadData")?.click();
     }, [data])
 
-    const updateProductHandler = (target: Product, id: number) => {
+    const updateProductHandler = (target: Product, i: number) => {
+        console.log(i)
+        console.log(itemIDs)
         setLoading(true);
         dispatch(setproduct(target, error));
-        if(itemID){
-            dispatch(setid(itemID[id]));
-        }
+            dispatch(setid(itemIDs[i]));
         dispatch(settask("Update"));
         setLoading(false)
     }

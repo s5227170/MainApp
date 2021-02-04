@@ -10,9 +10,10 @@ interface featureProps extends InputHTMLAttributes<HTMLInputElement>{
     feats?: string[]  
     featsNumber?: number
     preview: boolean
+    update?: boolean
 }
 
-const Features: FC<featureProps> = ({featsNumber, feats, disabled, ids, number, onBlur, onChange, preview}) => {
+const Features: FC<featureProps> = ({featsNumber, feats, disabled, ids, number, onBlur, onChange, preview, update}) => {
     useEffect(() => {
 
     }, [number])
@@ -43,7 +44,7 @@ const Features: FC<featureProps> = ({featsNumber, feats, disabled, ids, number, 
                 :
                     null
                 }
-            {preview?
+            {!preview && update?
             <Fragment>
                 <hr className="divider"></hr>
                 <h3>Please re-enter current features if you wish to save them</h3>

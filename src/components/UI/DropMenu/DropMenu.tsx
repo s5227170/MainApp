@@ -46,7 +46,7 @@ const DropMenu: FC = () => {
                 {page=="About" ?
                     <NavLink activeClassName="active-link" to="../About" exact>About</NavLink>
                 : <NavLink to="../About" exact>About</NavLink>}
-                    <NavLink activeClassName="signout" to="" onClick={logoutClickHandler}>SignOut</NavLink>
+                    <NavLink activeClassName="active-link last" to="" onClick={logoutClickHandler}>SignOut</NavLink>
         </div>
     );
 }

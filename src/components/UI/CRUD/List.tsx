@@ -58,12 +58,14 @@ const List: FC = () => {
         dispatch(listproducts());
     }
     
-    //The products are fetched as JSON, therefore they
-    //can be operated directly without conversion.
-    //Now a tabke is to be created containing all products,
-    // as well as buttons for update and delete
     return(
         <div className={classes.section}>
+            <div className={classes.mode}>
+                {/* Add a state taht controls which table should be showed. The data stays the same, it just gets filtered */}
+                <h3>CRUD</h3>
+                <h4>/</h4>
+                <h3>Stock</h3>
+            </div>
             <div className={classes.left}>
                 <span id={style["side-menu-btn"]} className="material-icons md-36" onClick={showSidebarHandler}>
                     view_headline

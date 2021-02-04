@@ -78,15 +78,18 @@ const Create: FC = () => {
             
             const storageRef = firebase.storage().ref('/images/');
             const fileRef = storageRef.child(fileSelected.name)
+            const currentTime = new Date();
+            const date = String(currentTime.getDate() + (currentTime.getMonth() + 1) + currentTime.getFullYear());
             
             await fileRef.put(fileSelected)
             const fileURL = await fileRef.getDownloadURL()
+            
 
             setLoading(true);
             let id=uuid();
 
             if(feature_array)
-            dispatch(createproduct({id, title, type, feature_array, description, avatar: fileURL, price, reduced, old_price, new_price }, () => setLoading(false)));
+            dispatch(createproduct({id, title, type, feature_array, description, avatar: fileURL, price, reduced, old_price, new_price, date }, () => setLoading(false)));
             setTimeout(() => {
                 dispatch(settask(""))
             }, 1500);

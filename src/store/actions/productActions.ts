@@ -121,14 +121,16 @@ export const createproduct = (data: Product, onError: () => void): ThunkAction<v
 }
 
 //Update a product
-export const updateproduct = (data: Product, id: string, onError: () => void): ThunkAction<void, RootState, null, ProductAction> => {
-    return async dispatch => {
+export const updateproduct = (id: string, data: Product, onError: () => void) => async (dispatch: Dispatch<ProductAction>) => {
+    
         try{
-            const target = await agent.Products.update(data, id);
-            dispatch({
-                type: UPDATE_PRODUCT,
-                payload: target
-            })
+           await agent.Products.update(data, id).then(
+                response => {
+                    dispatch({
+                    type: UPDATE_PRODUCT,
+                    payload: data
+                })}
+           )
         } catch(err) {
             console.log(err);
             onError();
@@ -137,7 +139,6 @@ export const updateproduct = (data: Product, id: string, onError: () => void): T
                 payload: err.Message
             });
         }
-    }
 }
 
 //Delete a product
@@ -164,7 +165,7 @@ export const deleteproduct = (id: string, onError: () => void): ThunkAction<void
 
 //View a producct
 //data - id of the product requested for view
-export const viewproduct = (data: string, onError: () => void): ThunkAction<void, RootState, null, ProductAction> => {
+export const viewproduct = (data: string, load: () => void): ThunkAction<void, RootState, null, ProductAction> => {
     return async dispatch => {
         try{
             const target = await agent.Products.details(data);
@@ -172,9 +173,9 @@ export const viewproduct = (data: string, onError: () => void): ThunkAction<void
                 type: VIEW_PRODUCT,
                 payload: target
             })
+            load();
         } catch(err) {
             console.log(err);
-            onError();
             dispatch({
                 type: SET_ERROR,
                 payload: err.Message
@@ -196,9 +197,7 @@ export const listproducts = () => async ( dispatch: Dispatch<ProductAction>) => 
                 dispatch({
                     type: LIST_PRODUCT,
                     payload: response
-                })
-                
-            }
+                })}
             );
         
         dispatch({
