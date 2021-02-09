@@ -2,11 +2,12 @@
     margin-top: 100px !important;
     height: auto;
     min-height: 600px;
-    width: 60%;
+    width: 90%;
     margin: auto;
     padding: 10px;
     text-align: left;
-    background:  #f7f4eb;
+	font-family: sans-serif;
+	font-weight: 100;
     box-shadow: -1px 1px 5px 6px rgba(136,128,128,0.75);
     font-size: large;
     font-weight: 600;
@@ -17,14 +18,6 @@
     position: relative;
     border-radius: 4px;
 
-    .left{
-        width: 15%;
-        height: 100%;
-    }
-    .right{
-        width: 15%;
-        height: 100%;
-    }
 
     @media only screen and(max-width: 920px) {
         &{
@@ -34,44 +27,63 @@
     & .btnCell{
         width: 50px;
     }
-    & #side-menu-btn{
-        position: absolute;
-        top: 10px;
-        left: 210px;
+    & .mode{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 300px;
+        height: 50px;
+        border: 2px solid #ffffff;
+        text-align: center;
+        padding: 7px;
+
+        & *{
+            display: inline-block;
+            margin: 5px;
+        }
+        & h3:hover{
+            cursor: pointer;
+            color: #000000;
+            transform: scale(1.1);
+            transition: .4s ease-in-out;
+        }
+        & h3:active{
+            
+            transform: scale(0.9);
+        }
     }
-    & #side-menu-btn:hover{
-        transform: scale(1.3);
-        cursor: pointer;
-    }
-    & #side-menu-btn:after{
-        content: "";
+    & #drop-menu{
         display: inline-block;
-        height: 100%;
-        width: 100%;
-        box-shadow: 0px 0px 2px 2px rgba(3, 3, 3, 0.4);
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 4;
-        transition: all  1.7s;
-    }
-    .section tr:hover td{
-        background: rgb(235, 232, 232);
-        cursor: pointer;
-    }
-    .section tr:hover span{
-        background: rgb(235, 232, 232);
-        cursor: pointer;;
+        position: relative;
+        margin: 0px 10px;
+    
+        &:hover{
+            transform: scale(1.3);
+            cursor: pointer;
+            transition: all .4s ease-in-out;
+        }
+        &:after{
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            box-shadow: 0px 0px 2px 2px rgba(3, 3, 3, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 4;
+            transition: all  1.7s;
+        }
     }
     #refresh{
-        display: inline;
-        position: absolute;
-        left: 260px;
-        top: 10px;
+        display: inline-block;
+        position: relative;
+        margin: 0px 10px;
+
         cursor: pointer;
 
             &:hover{
-                animation: rotation 2s infinite linear;
+                animation: rotation 3s infinite linear;
             }
 
             &:active{
@@ -80,7 +92,7 @@
             }
             &:after{
                 content: "";
-                display: inline-block;
+                position: absolute;
                 height: 100%;
                 width: 100%;
                 box-shadow: 0px 0px 2px 2px rgba(3, 3, 3, 0.4);
@@ -100,26 +112,23 @@
                 }
             }
     }
-    .mode{
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 200px;
-        height: 50px;
-        border: 2px solid #000;
-        text-align: center;
-        padding: 7px;
+    .section tr:hover td{
+        background: rgb(235, 232, 232);
+        cursor: pointer;
+    }
+    .section tr:hover span{
+        background: rgb(235, 232, 232);
+        cursor: pointer;;
+    }
+    
 
-        & *{
-            display: inline-block;
-            margin: 5px;
-        }
-        & h3:hover{
-            cursor: pointer;
-            color: #365fac;
-        }
-        & h3:active{
-            transform: scale(0.9);
-        }
+    & .font-color{
+        color: #444343;
+    }
+    & .header{
+        text-align: center;
+    }
+    & .buttons{
+        display: inline-block;
     }
 }

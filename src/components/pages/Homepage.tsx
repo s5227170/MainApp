@@ -1,8 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { setpage } from '../../store/actions/productActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 import classes from './stylesheets/Homepage.module.scss';
 
 const Homepage: FC = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setpage("/"));
+    }, []);
+    
     return(
         <section className={classes.section}>
             <div className="container">

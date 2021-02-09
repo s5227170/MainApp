@@ -15,11 +15,6 @@
     width: 100px;
     height: 100%;
 }
-.navbarItems{
-    vertical-align: middle;
-    height: 100%;
-    padding-right: 20px;
-}
 .navbarLogo{
     height: auto;
     width: 15%;
@@ -58,24 +53,48 @@
     opacity: 0.8;
     font-family: 'Special Elite', cursive;
 }
-.buttons,
-.button a{
-    height: 100%;
+.links{
+    display: flex;
     width: 100%;
-}
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 20%;
 
-@mixin button-data($right){
-    margin: 5px !important;
-    position: absolute;
-    top: 20px;
-    right: $right;
-}
+    & *{
+        padding: 10px;
+        margin: 30px 10px;
+        text-decoration: none;
+        font-size: 25px;
+        cursor: pointer;
+        font-family: 'Fraunces', serif;
+        color: #214486;
+        background: none;
+    }
 
-.button1{
-    @include button-data(135px)
+    & *:hover{
+        border-radius:  4px;
+        background: #d1d2d4;
+        text-decoration: underline;
+        transform: scale(1.05);
+    }
+
+    & *:active{
+        transform: scale(0.95);
+    }
+
+    & .active{
+        border-radius:  4px;
+        background: #d1d2d4;
+        text-decoration: underline;
+        transform: scale(1.05);
+    }
+
 }
-.button2{
-    @include button-data(5px)
+.active{
+    border-radius:  4px;
+    background: #d1d2d4;
+    text-decoration: underline;
+    transform: scale(1.05);
 }
 @media only screen and (max-width: 550px){
     .button1{

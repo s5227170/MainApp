@@ -1,12 +1,13 @@
 import React, { FC, useState, FormEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import Message from '../UI/Message/Message';
 import { signup, setError } from '../../store/actions/authActions';
 import { RootState } from '../../store';
 import classes from './stylesheets/SignUp.module.scss';
+import InputV2 from '../UI/InputV2/InputV2';
+import { setpage } from '../../store/actions/productActions';
 
 const SignUp: FC = () => {
     const [firstName, setFirstName] = useState('');
@@ -24,6 +25,10 @@ const SignUp: FC = () => {
         }
     }, [error, dispatch]);
 
+    useEffect(() => {
+        dispatch(setpage("SignUp"));
+    }, []);
+
     const submitHandler = (e: FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -36,28 +41,31 @@ const SignUp: FC = () => {
                 <h2>Sign up</h2>
                 <form className={classes.form} onSubmit={submitHandler}>
                     {error && <Message type='danger' msg={error} />}
-                    <Input
+                    <InputV2
+                        inputCasingStyle="input-create"
                         name="firstName"
                         value={firstName}
                         onChange={(e) => setFirstName(e.currentTarget.value)}
                         placeholder="First name"
-                        label="First name"
+                        content="First name"
                     />
-                    <Input
-                    type="email"
+                    <InputV2
+                        inputCasingStyle="input-create"
+                        type="email"
                         name="email"
                         value={email}
                         onChange={(e) => setEmail(e.currentTarget.value)}
                         placeholder="Email address"
-                        label="Email address"
+                        content="Email address"
                     />
-                    <Input
+                    <InputV2
+                        inputCasingStyle="input-create"
                         type="password"
                         name="password"
                         value={password}
                         onChange={(e) => setPassword(e.currentTarget.value)}
                         placeholder="Password"
-                        label="Password"
+                        content="Password"
                     />
                     <div className={classes.submit}>
                         <Button text={loading ? "Loading..." : "Sign up"} disabled={loading} />

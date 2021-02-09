@@ -1,8 +1,7 @@
 .section{
     margin-top: 100px !important;
-    padding-top: 60px !important;
     height: auto;
-    width: 600px;
+    width: 500px;
     margin: auto;
     padding: 10px;
     text-align: left;
@@ -12,6 +11,10 @@
     font-weight: 600;
     position: relative;
     border-radius: 4px;
+}
+.section h2{
+    text-align: center;
+    padding-bottom: 20px;
 }
 .section label{
     display: inline-block;
@@ -152,7 +155,7 @@
     left: 0;
     z-index: 4;
     transition: all  1.7s;
-    border-radius: 10px;
+    border-radius: 4px;
 }
 #return-icon{
     position: absolute;
@@ -306,4 +309,18 @@
 .currencyInput input:focus ~ .underline:before,
 .currencyInput input:valid ~ .underline:before{
     transform: scaleX(1);
+}
+.fireContainer{
+    display: block;
+}
+.fire{
+    border:2px dotted #00f;
+    display:inline;
+    background:#ff0000;
+    margin: 5px;
+    padding: 5px;
+}
+#fire-label{
+    width: 80px;
+    display: inline;
 }

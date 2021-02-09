@@ -16,7 +16,6 @@ import Features from '../Features/Features';
 
 const View: FC<Product> = (Product) => {
     const history = useHistory();
-    const [helperState, setHelperState] = useState("");
     const dispatch = useDispatch();
     const { error } = useSelector((state: RootState) => state.prod);
 
@@ -27,12 +26,6 @@ const View: FC<Product> = (Product) => {
             }
         }
     }, [error, dispatch]);
-
-    useEffect(() => {
-        return () => {
-            setHelperState(uuid());
-        }
-    }, [])
 
     const returnHandler = () => {
         dispatch(settask(""));
@@ -48,6 +41,7 @@ const View: FC<Product> = (Product) => {
                 </div>
                 <h1>Overview</h1>
                 <h3>Product features</h3>
+                {console.log(Product.feature_array)}
                     <Features featsNumber={Product.feature_array.length} feats={Product.feature_array} ids="feats" number={Product.feature_array.length} preview={true}/>
 
                     <br/>

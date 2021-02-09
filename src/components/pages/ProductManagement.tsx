@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { RootState } from '../../store';
 import { settask, setError, setpage } from '../../store/actions/productActions';
+import classes from './stylesheets/ProductManagement.module.scss';
 
 import Create from '../UI/CRUD/Create';
 import Update from '../UI/CRUD/Update';
@@ -11,7 +12,7 @@ import View from '../UI/CRUD/View';
 import Delete from '../UI/CRUD/Delete';
 import List from '../UI/CRUD/List';
 
-const Browser: FC = () => {
+const ProductManagement: FC = () => {
     const { refresh } = useSelector((state: RootState) => state.prod);
     const { task } = useSelector((state: RootState) => state.prod);
     const { error } = useSelector((state: RootState) => state.prod);
@@ -83,4 +84,4 @@ const Browser: FC = () => {
       }
 }
 
-export default withRouter(Browser);
+export default withRouter(ProductManagement);

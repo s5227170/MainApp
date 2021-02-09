@@ -15,7 +15,6 @@ const Delete: FC = () => {
     const { error } = useSelector((state: RootState) => state.prod);
     const [loading, setLoading] = useState(false);
     const { id } = useSelector((state: RootState) => state.prod);
-    console.log(id)
     useEffect(() => {
         return () => {
             setHelperState(uuid());
@@ -28,7 +27,6 @@ const Delete: FC = () => {
 
     async function SubmitHandler (){
         setLoading(true);
-        console.log(id)
         dispatch(deleteproduct(id , () => (error)));
         setTimeout(() => {
             dispatch(settask(""));

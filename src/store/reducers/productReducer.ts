@@ -1,12 +1,13 @@
-import Backdrop from '../../components/UI/Backdrop/Backdrop';
-import { ProductAction, ProductState, SET_BACKDROP, SET_TASK, SET_PAGE, SET_PRODUCT, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT, VIEW_PRODUCT, LIST_PRODUCT, SET_LOADING, SET_ERROR, SET_ID, SET_FEATURE_ARRAY, SET_IDS_ARRAY, SET_PRODUCT_LOADING, SET_PRODUCT_FAIL } from '../types';
+import { ProductAction, ProductState, SET_BACKDROP, SET_TASK, SET_PAGE, SET_PRODUCT, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT, VIEW_PRODUCT, LIST_PRODUCT, SET_LOADING, SET_ERROR, SET_ID, SET_FEATURE_ARRAY, SET_IDS_ARRAY, SET_PRODUCT_LOADING, SET_PRODUCT_FAIL, CREATE_STOCK, SET_STOCK, LIST_STOCK } from '../types';
 
 const initialState: ProductState = {
     itemIDs: [],
+    stock: null,
     product: null,
     error: '',
     loading: false,
     product_array: null,
+    stock_array: null,
     task: "",
     page: "",
     backdrop: false,
@@ -90,6 +91,21 @@ export default ( state = initialState, action: ProductAction) => {
             return {
                 ...state,
                 loading: false
+            }
+        case SET_STOCK:
+            return {
+                ...state,
+                stock: action.payload
+            }
+        case CREATE_STOCK:
+            return {
+                ...state,
+                stock: action.payload
+            }
+        case LIST_STOCK:
+            return {
+                ...state,
+                stock_array: action.payload
             }
         default:
             return state;

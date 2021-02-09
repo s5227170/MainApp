@@ -2,12 +2,13 @@ import React, { FC, useState, FormEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import Message from '../UI/Message/Message';
 import { signin, setError } from '../../store/actions/authActions';
 import { RootState } from '../../store';
 import classes from './stylesheets/SignIn.module.scss';
+import InputV2 from '../UI/InputV2/InputV2';
+import { setpage } from '../../store/actions/productActions';
 
 
 const SignIn: FC = () => {
@@ -25,6 +26,10 @@ const SignIn: FC = () => {
         }
     }, [error, dispatch]);
 
+    useEffect(() => {
+        dispatch(setpage("SignIn"));
+    }, []);
+
     const submitHandler = (e: FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -37,24 +42,26 @@ const SignIn: FC = () => {
                 <h2>Sign in</h2>
                 <form  onSubmit={submitHandler}>
                     {error && <Message type='danger' msg={error} />}
-                    <Input
-                    type="email"
+                    <InputV2
+                        inputCasingStyle="input-create"
+                        type="email"
                         name="email"
                         value={email}
                         onChange={(e) => setEmail(e.currentTarget.value)}
                         placeholder="Email address"
-                        label="Email address"
+                        content="Email address"
                     />
-                    <Input
+                    <InputV2
+                        inputCasingStyle="input-create"
                         type="password"
                         name="password"
                         value={password}
                         onChange={(e) => setPassword(e.currentTarget.value)}
                         placeholder="Password"
-                        label="Password"
+                        content="Password"
                     />
                     <p><NavLink to="/forgot-password">Forgot Password</NavLink></p>
-                    <div className={classes.buttonContainer}>
+                    <div className={classes.submit}>
                         <Button text={loading ? "Loading..." : "Sign In"} disabled={loading} />
                     </div>
                 </form>

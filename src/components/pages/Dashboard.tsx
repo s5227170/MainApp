@@ -20,7 +20,7 @@ const Dashboard: FC = () => {
     }, [success, dispatch]);
 
     useEffect(() => {
-        dispatch(setpage("/"));
+        dispatch(setpage("Dashboard"));
     }, []);
 
     return (

@@ -1,18 +1,27 @@
+//Authentication
 export const SET_USER = 'SET_USER';
 export const SIGN_OUT = 'SIGN_OUT';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_ERROR = 'SET_ERROR';
 export const NEED_VERIFICATION = 'NEED_VERIFICATION';
 export const SET_SUCCESS = 'SET_SUCCESS';
+//Product management
 export const SET_FEATURE_ARRAY = 'SET_FEATURE_ARRAY';
 export const SET_IDS_ARRAY = 'SET_IDS_ARRAY';
 export const SET_ID = 'SET_ID';
+export const SET_PRODUCT_FAIL = 'SET_PRODUCT_FAIL';
+export const SET_PRODUCT_LOADING = 'SET_PRODUCT_LOADING';
+//UI
 export const SET_BACKDROP = 'SET_BACKDROP';
 export const SET_TASK = 'SET_TASK';
 export const SET_NEWTASK = 'SET_NEWTASK';
 export const SET_PAGE = 'SET_PAGE';
-export const SET_PRODUCT_FAIL = 'SET_PRODUCT_FAIL';
-export const SET_PRODUCT_LOADING = 'SET_PRODUCT_LOADING';
+
+//Stock
+export const SET_STOCK = 'SET_STOCK';
+export const CREATE_STOCK = 'CREATE_STOCK';
+export const LIST_STOCK = 'LIST_STOCK';
+//Products
 export const SET_PRODUCT = 'SET_PRODUCT';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
@@ -28,21 +37,33 @@ export interface Product {
     type: string;
     feature_array: string[];
     avatar: string;
+    fire: boolean
     price: number;
-    reduced: boolean;
+    reduced: string;
     old_price: number;
     new_price: number;
     date: string;
 }
 
+export interface Stock {
+    productID: string;
+    product: string;
+    type: string;
+    quantity: number;
+    fire: boolean;
+    sold: number;
+}
+
 export interface ProductState {
     itemIDs: string[];
+    stock: Stock | null;
     product: Product | null;
     error: '';
     loading: false;
     product_array: Array<Product> | null;
+    stock_array: Array<Stock> | null;
     task: "Create" | "Update" | "Delete" | "View" | "";
-    page: "Browser" | "About" | "ProductManagement" | "";
+    page: "Browse" | "About" | "ProductManagement" | "SignIn" | "SignUp" | "Dashboard" | "/" | "";
     backdrop: boolean;
     feature_array: string[] | null;
 }
@@ -146,7 +167,7 @@ interface setTask {
 
 interface setPage {
     type: typeof SET_PAGE
-    payload: "" | "ProductManagement" | "Browser" | "About" | "/";
+    payload: "" | "ProductManagement" | "SignIn" | "SignUp" | "Browse" | "Dashboard" | "About" | "/";
 }
 
 interface setProduct {
@@ -187,7 +208,25 @@ interface productRequestFail {
     type: typeof SET_PRODUCT_FAIL
 }
 
+interface setStock {
+    type: typeof SET_STOCK
+    payload: Stock;
+}
+
+interface createStock {
+    type: typeof CREATE_STOCK
+    payload: Stock;
+}
+
+interface listStock {
+    type: typeof LIST_STOCK
+    payload: Stock[];
+}
+
 export type ProductAction =
+listStock |
+createStock |
+setStock |
 productLoading |
 productRequestFail |
 setIDs | 

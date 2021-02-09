@@ -7,7 +7,7 @@ import firebase from '../../../firebase/config';
 import Button from '../Button/Button';
 import Message from '../Message/Message';
 import { RootState } from '../../../store';
-import { createproduct, deletefeature, setfeature, settask } from '../../../store/actions/productActions';
+import { createproduct, createstock, deletefeature, setfeature, settask } from '../../../store/actions/productActions';
 import { setError } from '../../../store/actions/productActions';
 import {  useHistory } from 'react-router';
 import Features from '../Features/Features';
@@ -40,14 +40,16 @@ const Create: FC = () => {
     const [description, setDescription] = useState('');
     const [avatar, setAvatar] = useState("");
     const [price, setPrice] = useState(0);
-    const [reduced, setReduced] = useState(false);
+    const [reduced, setReduced] = useState("false");
     const [old_price, setOldPrice] = useState(0);
     const [new_price, setNewPrice] = useState(0);
+    const [fire, setFire] = useState(false);
     //
     const dispatch = useDispatch();
     const history = useHistory();
     const { error } = useSelector((state: RootState) => state.prod);
     const { feature_array } = useSelector((state: RootState) => state.prod);
+    const { stock } = useSelector((state: RootState) => state.prod)
     //
 
     useEffect(() => {
@@ -80,29 +82,30 @@ const Create: FC = () => {
             const fileRef = storageRef.child(fileSelected.name)
             const currentTime = new Date();
             const date = String(currentTime.getDate() + (currentTime.getMonth() + 1) + currentTime.getFullYear());
-            
+            console.log(date)
             await fileRef.put(fileSelected)
             const fileURL = await fileRef.getDownloadURL()
             
 
             setLoading(true);
             let id=uuid();
-
-            if(feature_array)
-            dispatch(createproduct({id, title, type, feature_array, description, avatar: fileURL, price, reduced, old_price, new_price, date }, () => setLoading(false)));
+            if(feature_array){
+                    dispatch(createproduct({id, title, type, feature_array, fire, description, avatar: fileURL, price, reduced, old_price, new_price, date }));
+                    dispatch(createstock(stock))
+            }
             setTimeout(() => {
                 dispatch(settask(""))
             }, 1500);
         }
     }
 
+
     const reducedHandler = (e: FormEvent<HTMLSelectElement>) => {
         e.preventDefault();
-        console.log(e.currentTarget.value)
         if(e.currentTarget.value == "Reduced price"){
-            setReduced(true);
+            setReduced("true");
         } else{
-            setReduced(false);
+            setReduced("false");
         }
     }
 
@@ -167,6 +170,10 @@ const Create: FC = () => {
         document.getElementById("real-file")?.click();
     }
 
+    const fireHandler = () => {
+        setFire(!fire);
+    }
+
     return(
         <div className={classes.section}>
             
@@ -204,7 +211,10 @@ const Create: FC = () => {
             <hr className={classes.divider}></hr>
             <form className={classes.form} onSubmit={submitHandler}>
             {error && <Message type='danger' msg={error} />}
-            
+                    <div className={classes.fireContainer}>
+                        <label id={style["fire-label"]}>Fire</label>
+                        <input type="checkbox" className={classes.fire} onClick={fireHandler}/>
+                    </div>
                     <InputV2
                         inputCasingStyle="input-create"
                         name="Title"
@@ -266,7 +276,7 @@ const Create: FC = () => {
                         <option defaultValue="Regular price">Regular price</option>
                         <option defaultValue="Reduced price">Reduced price</option>
                     </select>
-                    {!reduced ?
+                    {reduced==="false" ?
                         null
                     :
                         <div className="reduced">

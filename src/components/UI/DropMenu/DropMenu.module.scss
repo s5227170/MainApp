@@ -1,0 +1,35 @@
+.menu-items-case {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding-left: 20%;
+
+    & *{
+        padding: 10px;
+        margin: 30px 10px;
+        text-decoration: none;
+        font-size: 25px;
+        cursor: pointer;
+        font-family: 'Fraunces', serif;
+        color: #214486;
+        background: none;
+    }
+    & *:hover{
+        border-radius:  4px;
+        background: #d1d2d4;
+        text-decoration: underline;
+        transform: scale(1.05);
+    }
+    & *:active{
+        transform: scale(0.95);
+    }
+
+    & .active{
+        border-radius:  4px;
+        background: #d1d2d4;
+        text-decoration: underline;
+        transform: scale(1.05);
+    }
+
+}

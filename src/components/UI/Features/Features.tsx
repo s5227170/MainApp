@@ -2,7 +2,7 @@ import React, { FC, useEffect, InputHTMLAttributes, Fragment } from 'react'
 import { v4 as uuid } from 'uuid';
 
 import InputV2 from '../InputV2/InputV2';
-import "./Features.css";
+import classes from "./Features.module.scss";
 
 interface featureProps extends InputHTMLAttributes<HTMLInputElement>{
     number: number
@@ -46,7 +46,7 @@ const Features: FC<featureProps> = ({featsNumber, feats, disabled, ids, number, 
                 }
             {!preview && update?
             <Fragment>
-                <hr className="divider"></hr>
+                <hr className={classes.divider}></hr>
                 <h3>Please re-enter current features if you wish to save them</h3>
             </Fragment>
             :

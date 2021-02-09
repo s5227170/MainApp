@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, useEffect } from 'react';
 
 interface pageProps {
     id: number;
@@ -8,11 +8,16 @@ interface pageProps {
 
 function usePagination(initialState: any) {
     const { itemsPerPage, data, startFrom } = initialState;
+
     const perPage = itemsPerPage ? itemsPerPage : 10;
     const pages = Math.ceil(data.length / perPage);
     const pagination: pageProps[] = [];
     const [currentPage, setCurrentPage] = useState(startFrom <= pages ? startFrom : 1);
     const [slicedData, setSlicedData] = useState([...data].slice((currentPage - 1) * perPage, currentPage * perPage));
+
+    useEffect(() => {
+        setSlicedData(data)
+    }, [data])
 
     let ellipsisLeft = false;
     let ellipsisRight = false;

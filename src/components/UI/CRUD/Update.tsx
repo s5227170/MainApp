@@ -40,6 +40,7 @@ const Update: FC<Product> = (Product) => {
     const [new_price, setNewPrice] = useState(Product.new_price);
     const [features, setFeatures] = useState(0)
     const [feature_array_existing, setFeatureArray_existing] = useState(Product.feature_array)
+    const [fire, setFire] = useState(Product.fire)
     //
     const dispatch = useDispatch();
     const history = useHistory();
@@ -76,10 +77,10 @@ const Update: FC<Product> = (Product) => {
                 await fileRef.put(fileSelected)
                 const fileURL = await fileRef.getDownloadURL()
             setLoading(true);
-        dispatch(updateproduct(id, {id: Product.id, title, type, feature_array, description, avatar: fileURL , price, reduced, old_price, new_price, date }, () => setLoading(false)));
+        dispatch(updateproduct(id, {id: Product.id, title, type, feature_array, fire, description, avatar: fileURL , price, reduced, old_price, new_price, date }, () => setLoading(false)));
             }else if(Product.avatar) {
                 setLoading(true);
-                dispatch(updateproduct(id, {id: Product.id, title, type, feature_array, description, avatar: Product.avatar, price, reduced, old_price, new_price, date }, () => setLoading(false)));
+                dispatch(updateproduct(id, {id: Product.id, title, type, feature_array, fire, description, avatar: Product.avatar, price, reduced, old_price, new_price, date }, () => setLoading(false)));
             }
         setTimeout(() => {
             history.goBack();
@@ -90,9 +91,9 @@ const Update: FC<Product> = (Product) => {
     const reducedHandler = (e: FormEvent<HTMLSelectElement>) => {
         e.preventDefault();
         if(e.currentTarget.value){
-            setReduced(true);
+            setReduced("true");
         } else{
-            setReduced(false);
+            setReduced("false");
         }
     }
 
@@ -160,6 +161,11 @@ const Update: FC<Product> = (Product) => {
         document.getElementById("real-file")?.click();
     }
 
+    const fireHandler = () => {
+        setFire(!fire);
+        console.log(fire)
+    }
+
     return(
             <div className={classes.section}>
                 <div className={classes.return} onClick={returnHandler}>
@@ -167,7 +173,7 @@ const Update: FC<Product> = (Product) => {
                         keyboard_return
                     </span>
                 </div>
-                <h1>Enter new product details</h1>
+                <h2>Enter new product details</h2>
                 <h3>Enter product features</h3>
                     <hr className={classes.divider}></hr>
                     <div className={classes.featureManagement}>
@@ -192,6 +198,10 @@ const Update: FC<Product> = (Product) => {
                 <hr className={classes.divider}></hr>
                 <form className={classes.form} onSubmit={submitHandler}>
                 {error && <Message type='danger' msg={error} />}
+                <div className={classes.fireContainer}>
+                        <label id={style["fire-label"]}>Fire</label>
+                            <input type="checkbox" className={classes.fire} onClick={fireHandler} checked={fire}/>
+                        </div>
                         <InputV2
                             inputCasingStyle="input-create"
                             name="Title"
@@ -248,11 +258,11 @@ const Update: FC<Product> = (Product) => {
                             </div>
                         </div>
                         <select className={classes.select} name="Reduced" required onChange={reducedHandler}>
-                            <option selected disabled>Reduced?</option>
-                            <option defaultValue="">Regular price</option>
-                            <option defaultValue="1">Reduced price</option>
+                            <option selected disabled defaultValue="Regular price">Reduced?</option>
+                            <option defaultValue="Regular price">Regular price</option>
+                            <option defaultValue="Reduced price">Reduced price</option>
                         </select>
-                        {!reduced ?
+                        {reduced==="false" ?
                             null
                         :
                             <div className="reduced">

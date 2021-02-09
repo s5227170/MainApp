@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { Product } from '../store/types';
+import { Product, Stock } from '../../store/types';
 
 axios.defaults.baseURL = process.env.REACT_APP_FIREBASE_DB_URL;
 
@@ -21,6 +21,15 @@ const Products = {
     delete: (id: string) => requests.del(`/products/${id}.json`)
 }
 
+const Stocks = {
+    list: (): Promise<Stock[]> => requests.get('/stocks.json'),
+    details: (id: string) => requests.get(`/stocks/${id}.json`),
+    create: (stock: Stock) => requests.post('/stocks.json', stock),
+    update: (stock: Stock, id: string) => requests.put(`/stocks/${id}.json`, stock),
+    delete: (id: string) => requests.del(`/stocks/${id}.json`)
+}
+
 export default {
-    Products
+    Products,
+    Stocks
 }

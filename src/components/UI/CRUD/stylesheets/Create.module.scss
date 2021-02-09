@@ -252,3 +252,17 @@
     display: block;
     margin: auto;
 }
+.fireContainer{
+    display: block;
+}
+.fire{
+    border:2px dotted #00f;
+    display:inline;
+    background:#ff0000;
+    margin: 5px;
+    padding: 5px;
+}
+#fire-label{
+    width: 80px;
+    display: inline;
+}

@@ -12,7 +12,7 @@
     margin: 0 !important;
 }
 
-.crudButtons{
+.blueCrudButtons{
     position: absolute;
     top: 0px;
     left: 0px;
@@ -29,6 +29,32 @@
     animation-duration: .2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+
+    & h3{
+        text-align: center;
+    }
+}
+.limeCrudButtons{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 0px;
+    background: #ffffff;
+    padding: 5px;
+    border: 2px solid #36ac4a;
+    border-radius: 6px;
+    z-index: 150;
+    
+    animation: expand;
+    animation-timing-function: linear;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+    & h3{
+        text-align: center;
+    }
 }
 
 #option1:hover,
@@ -38,7 +64,36 @@
     background: none;
     transform: scale(1.05);
 }
-.optionContainer h4{
+.blueContainer{
+    padding-top: 5px;
+    cursor: pointer;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    animation: appear;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-delay: .6s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    opacity: 0;
+
+    &:hover{
+        background: #c0c0c0;
+        border-radius: 4px;
+        transform: scale(1.05);
+        transition: all .2s ease-in-out;
+    }
+    &:active{
+        transform: scale(0.97);
+    }
+}
+.blueContainer h4{
+    display: inline;
+    vertical-align: middle;
+}
+.limeContainer h4{
     padding-top: 5px;
     position: absolute;
     cursor: pointer;
@@ -51,13 +106,14 @@
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     opacity: 0;
-}
-.optionContainer:hover{
-    background: #c0c0c0;
-    border-radius: 4px;
-}
-.optionContainer:active{
-    transform: scale(0.97);
+
+    &:hover{
+        background: #c0c0c0;
+        border-radius: 4px;
+    }
+    &:active{
+        transform: scale(0.97);
+    }
 }
 .crudButtons h3{
     text-align: center;
