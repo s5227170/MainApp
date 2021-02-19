@@ -1,9 +1,39 @@
 import { ThunkAction } from 'redux-thunk';
 
-import { Product, ProductAction, SET_TASK, SET_PAGE, SET_PRODUCT, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT, VIEW_PRODUCT, LIST_PRODUCT, SET_ERROR, SET_LOADING, SET_BACKDROP, SET_ID, SET_FEATURE_ARRAY, SET_IDS_ARRAY, SET_PRODUCT_FAIL, SET_PRODUCT_LOADING, SET_STOCK, Stock, CREATE_STOCK, LIST_STOCK } from '../types';
+import { Product, ProductAction, SET_TASK, SET_PAGE, SET_PRODUCT, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT, VIEW_PRODUCT, LIST_PRODUCT, SET_ERROR, SET_LOADING, SET_BACKDROP, SET_ID, SET_FEATURE_ARRAY, SET_PRODUCT_FAIL, SET_PRODUCT_LOADING, Stock, CREATE_STOCK, LIST_STOCK, SET_STOCK_TO_CHANGE, SET_GLOBAL_BACKDROP, SHOW_MODAL, UPDATE_STOCK, SET_PRODUCT_IDS_ARRAY, SET_STOCK_IDS_ARRAY } from '../types';
 import { RootState } from '..';
-import agent from '../../api/Products/agent';
+import agent from '../../api/agent';
 import { Dispatch } from 'redux';
+
+//Change stock amount
+export const updatestock = (id: string, data: Stock) => async (dispatch: Dispatch<ProductAction>) => {
+    try{
+        await agent.Stocks.update(data, id).then(
+            response => {
+                dispatch({
+                    type: UPDATE_STOCK,
+                    payload: data
+                })
+            }
+        )
+    }catch(e) {
+
+    }
+}
+
+//Set the stock to be modified
+export const setstocktochange = (value: Stock, id: string) => ( dispatch: Dispatch<ProductAction> ) => {
+    console.log(value)
+    try{
+        dispatch({
+            type: SET_STOCK_TO_CHANGE,
+            payload: value,
+            payload2: id
+        })
+    }catch(e) {
+
+    }
+}
 
 //Fetch stock state 
 export const liststock = () => async ( dispatch: Dispatch<ProductAction> ) => {
@@ -21,25 +51,23 @@ export const liststock = () => async ( dispatch: Dispatch<ProductAction> ) => {
     }
 }
 
-//Create a stock manager for a product
-export const createstock = (data: Stock) => async (dispatch: Dispatch<ProductAction>) => {
-    try {
-        await agent.Stocks.create(data).then(
-            response => {dispatch({
-                type: CREATE_STOCK,
-                payload: response
-        })})
-    } catch(e) {
-
+//Stock ID's container array
+export const setstockids = (arr: string[]): ThunkAction<void, RootState, null, ProductAction> => {
+    const updated_arr: string[] = [...arr]; 
+    return dispatch => {
+        dispatch({
+            type: SET_STOCK_IDS_ARRAY,
+            payload: updated_arr
+        })
     }
 }
 
 //item ID's container array
-export const setids = (arr: string[]): ThunkAction<void, RootState, null, ProductAction> => {
+export const setproductids = (arr: string[]): ThunkAction<void, RootState, null, ProductAction> => {
     const updated_arr: string[] = [...arr]; 
     return dispatch => {
         dispatch({
-            type: SET_IDS_ARRAY,
+            type: SET_PRODUCT_IDS_ARRAY,
             payload: updated_arr
         })
     }
@@ -89,6 +117,26 @@ export const setbackdrop = (value: boolean): ThunkAction<void, RootState, null, 
     }
 }
 
+//Global backdrop pop/hide
+export const setglobalbackdrop = (value: boolean): ThunkAction<void, RootState, null, ProductAction> => {
+    return dispatch => {
+        dispatch({
+            type: SET_GLOBAL_BACKDROP,
+            payload: value
+        })
+    }
+}
+
+//Backdrop pop/hide
+export const setshowmodal = (value: boolean): ThunkAction<void, RootState, null, ProductAction> => {
+    return dispatch => {
+        dispatch({
+            type: SHOW_MODAL,
+            payload: value
+        })
+    }
+}
+
 //Set the requested action type for the chosen product
 export const settask = (value: " " | "" | "Create" | "Update" | "Delete" | "View" ): ThunkAction<void, RootState, null, ProductAction> => {
     return dispatch => {
@@ -130,14 +178,9 @@ export const setproduct= (data: Product, onError: () => void): ThunkAction<void,
 
 //Create a product
 export const createproduct = (data: Product) => async (dispatch: Dispatch<ProductAction>)  => {
-
         try{
             await agent.Products.create(data).then(
-                response => {
-                    dispatch({
-                        type: CREATE_PRODUCT,
-                        payload: response
-                    });
+                async response => {
                     const stock:Stock = {
                         productID: response.name,
                         product: data.title,
@@ -146,22 +189,25 @@ export const createproduct = (data: Product) => async (dispatch: Dispatch<Produc
                         fire: data.fire,
                         sold: 0
                     }
-                    dispatch({
-                        type: SET_STOCK,
-                        payload: stock
-                    })
+                    await agent.Stocks.create(stock).then(
+                        response => {
+                            dispatch({
+                            type: CREATE_STOCK,
+                            payload: response
+                            })
+                        }
+                    )
                 }
-            );
-            
-            
+            );  
         } catch(err) {
             console.log(err);
             dispatch({
                 type: SET_ERROR,
                 payload: err.Message
             });
-    }
-}
+        }
+};
+
 
 //Update a product
 export const updateproduct = (id: string, data: Product, onError: () => void) => async (dispatch: Dispatch<ProductAction>) => {

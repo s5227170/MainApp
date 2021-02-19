@@ -5,8 +5,11 @@ import { v4 as uuid } from 'uuid';
 import classes from './ProductTable.module.scss';
 import usePagination from '../../../hooks/usePagination';
 import { Product, Stock } from '../../../store/types';
-import { setid, setproduct, settask } from '../../../store/actions/productActions';
+import { setglobalbackdrop, setid, setproduct, setshowmodal, setstocktochange, settask } from '../../../store/actions/productActions';
 import { RootState } from '../../../store';
+import Modal from './../Modal/Modal';
+import StockManager from '../StockManager/StockManager';
+import GlobalBackdrop from '../GlobalBackdrop/GloalBackdrop';
 
 interface paginationProps {
     data: Stock[] | Product[];
@@ -22,7 +25,17 @@ const ProductTable: FC<paginationProps> = ({ data, itemsPerPage, startFrom, fiel
     const dispatch = useDispatch();
     const { slicedData, pagination, prevPage, nextPage, changePage } = usePagination({ itemsPerPage, data: data, startFrom });
     const { error } = useSelector((state: RootState) => state.prod);
-    const { itemIDs } = useSelector((state: RootState) => state.prod);
+    const { productIDs } = useSelector((state: RootState) => state.prod);
+    const { stockIDs } = useSelector((state: RootState) => state.prod);
+    const { stockToChange } = useSelector((state: RootState) => state.prod);
+    const { stockToChangeID } = useSelector((state: RootState) => state.prod);
+    const { globalBackdrop } = useSelector((state: RootState) => state.prod);
+    const { showModal } = useSelector((state: RootState) => state.prod);
+
+
+    useEffect(() => {
+        
+    }, [stockToChange])
 
     useEffect(() => {
         document.getElementById("loadData")?.click();
@@ -31,14 +44,14 @@ const ProductTable: FC<paginationProps> = ({ data, itemsPerPage, startFrom, fiel
     const updateProductHandler = (target: Product, i: number) => {
         setLoading(true);
         dispatch(setproduct(target, error));
-        dispatch(setid(itemIDs[i]));
+        dispatch(setid(productIDs[i]));
         dispatch(settask("Update"));
         setLoading(false)
     }
 
     const deleteProductHandler = (i: number) => {
         setLoading(true);
-        dispatch(setid(itemIDs[i]));
+        dispatch(setid(productIDs[i]));
         dispatch(settask("Delete"));
         setLoading(false)
     }
@@ -50,9 +63,35 @@ const ProductTable: FC<paginationProps> = ({ data, itemsPerPage, startFrom, fiel
         setLoading(false)
     }
 
+    const managerOpenHandler = (item: Stock, id: string) => {
+        dispatch(setshowmodal(!showModal))
+        dispatch(setstocktochange(item, id))
+        dispatch(setglobalbackdrop(!globalBackdrop))
+
+    }
+
     return (
         <Fragment>
             <div className={classes['table-wrapper']}>
+                {globalBackdrop?
+                    <GlobalBackdrop />
+                :
+                    null
+                }
+
+                {showModal?
+                        <Modal>
+                            {stockToChange?
+                                <StockManager stockItem={stockToChange} id={stockToChangeID}/>
+                            :
+                                null
+                            }
+                            {/* {console.log("the item is = " + stockToChange)} */}
+                        </Modal>
+                    :
+                        null
+                }
+
                 <table className={!stock? classes.Blue : classes.Lime}>
                     <thead>
                         <tr>
@@ -73,11 +112,11 @@ const ProductTable: FC<paginationProps> = ({ data, itemsPerPage, startFrom, fiel
                     </thead>
                     <tbody>
 
-                        {slicedData.map((item, i) => ( console.log(slicedData),
+                        {slicedData.map((item, i) => (
                             <tr key={item.id}>
                                 {(fields).map((field, j) => (
                                     ((item[field] || item[field] === false || item[field] === 0|| item[field] == undefined) ? 
-                                        <td key={uuid()} onClick={(e) => viewProductHandler(item)}>{item[field] == true? "yes" : item[field]}</td>
+                                        <td key={uuid()} onClick={(e) => viewProductHandler(item)}>{item[field] == true? "yes" : item[field] === false? "no" : item[field]}</td>
                                         :
                                         null)
                                 ))}
@@ -87,16 +126,16 @@ const ProductTable: FC<paginationProps> = ({ data, itemsPerPage, startFrom, fiel
                                 {!stock? 
                                     <Fragment>
                                         <td className={classes.btnCell} onClick={(e) => updateProductHandler(item, i)}>
-                                            <button className={classes["T-button"]}>Select</button>
+                                            <button className={classes["T-button-blue"]}>Select</button>
                                         </td>
                                         <td className={classes.btnCell} onClick={(e) => deleteProductHandler(i)}>
-                                            <button className={classes["T-button"]}>Select</button>
+                                            <button className={classes["T-button-blue"]}>Select</button>
                                         </td>
                                     </Fragment>
                                 : 
                                     <Fragment>
                                         <td>
-                                            <button>Select</button>
+                                            <button className={classes["T-button-lime"]} onClick={() => managerOpenHandler(item, stockIDs[i])}>Select</button>
                                         </td>
                                     </Fragment>
                                 }

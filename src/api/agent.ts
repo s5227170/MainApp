@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { Product, Stock } from '../../store/types';
+import { Product, Stock } from '../store/types';
 
 axios.defaults.baseURL = process.env.REACT_APP_FIREBASE_DB_URL;
 

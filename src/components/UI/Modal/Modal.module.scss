@@ -1,0 +1,14 @@
+.Modal{
+    display: block;
+    z-index: 25;
+    width: 400px;
+    height: auto;
+    background: #eeecec;
+    position: fixed;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px -1px 15px 0px #000000; 
+    box-shadow: 0px 10px 13px -7px #000000, 0px -1px 15px 0px #000000;
+}

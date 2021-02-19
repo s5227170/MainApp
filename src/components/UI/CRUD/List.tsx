@@ -7,8 +7,9 @@ import { RootState } from "../../../store";
 import {
   listproducts,
   setbackdrop,
-  setids,
+  setproductids,
   liststock,
+  setstockids,
 } from "../../../store/actions/productActions";
 import { Product, Stock } from "../../../store/types";
 import classes from "./stylesheets/List.module.scss";
@@ -19,8 +20,6 @@ const List: FC = () => {
   const [products, setProducts] = useState<Array<Product>>([]);
   const [stocks, setStocks] = useState<Array<Stock>>([]);
   const [stock, setStock] = useState(false);
-  const [itemID, setItemID] = useState<Array<string>>();
-  const [stockID, setStockId] = useState<Array<string>>();
   const dispatch = useDispatch();
   const { product_array } = useSelector((state: RootState) => state.prod);
   const { backdrop } = useSelector((state: RootState) => state.prod);
@@ -35,18 +34,17 @@ const List: FC = () => {
       const itemIDs: any = Object.entries(product_array).map((e) => e[0]);
       const toArr: any = Object.entries(product_array).map((e) => e[1]);
       setProducts(toArr);
-      setItemID(itemIDs);
-      if (itemID) dispatch(setids(itemID));
+      dispatch(setproductids(itemIDs));
     }
     
   }, [product_array]);
 
   useEffect(() => {
     if(stock_array) {
-      const stockIDs: any = Object.entries(stock_array).map((e) => e[0]);
+      const itemIDs: any = Object.entries(stock_array).map((e) => e[0]);
       const toArr: any = Object.entries(stock_array).map((e) => e[1]);
       setStocks(toArr);
-      setStockId(stockIDs);
+      dispatch(setstockids(itemIDs))
     }
   }, [stock_array])
 

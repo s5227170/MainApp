@@ -1,25 +1,35 @@
-import { ProductAction, ProductState, SET_BACKDROP, SET_TASK, SET_PAGE, SET_PRODUCT, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT, VIEW_PRODUCT, LIST_PRODUCT, SET_LOADING, SET_ERROR, SET_ID, SET_FEATURE_ARRAY, SET_IDS_ARRAY, SET_PRODUCT_LOADING, SET_PRODUCT_FAIL, CREATE_STOCK, SET_STOCK, LIST_STOCK } from '../types';
+import { ProductAction, ProductState, SET_BACKDROP, SET_TASK, SET_PAGE, SET_PRODUCT, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT, VIEW_PRODUCT, LIST_PRODUCT, SET_LOADING, SET_ERROR, SET_ID, SET_FEATURE_ARRAY, SET_PRODUCT_LOADING, SET_PRODUCT_FAIL, CREATE_STOCK, LIST_STOCK, SET_STOCK_TO_CHANGE, SET_GLOBAL_BACKDROP, SHOW_MODAL, UPDATE_STOCK, SET_PRODUCT_IDS_ARRAY, SET_STOCK_IDS_ARRAY } from '../types';
 
 const initialState: ProductState = {
-    itemIDs: [],
+    productIDs: [],
+    stockIDs: [],
     stock: null,
+    stockToChange: null,
+    stockToChangeID: null,
     product: null,
     error: '',
     loading: false,
-    product_array: null,
-    stock_array: null,
+    product_array: [],
+    stock_array: [],
     task: "",
     page: "",
     backdrop: false,
+    globalBackdrop: false,
+    showModal: false,
     feature_array: [],
 }
 
 export default ( state = initialState, action: ProductAction) => {
     switch(action.type) {
-        case SET_IDS_ARRAY:
+        case SET_PRODUCT_IDS_ARRAY:
             return {
                 ...state,
-                itemIDs: action.payload
+                productIDs: action.payload
+            }
+        case SET_STOCK_IDS_ARRAY:
+            return {
+                ...state,
+                stockIDs: action.payload
             }
         case SET_FEATURE_ARRAY:
             return {
@@ -31,6 +41,16 @@ export default ( state = initialState, action: ProductAction) => {
                 ...state,
                 backdrop: action.payload
             }
+        case SET_GLOBAL_BACKDROP:
+            return {
+                ...state,
+                globalBackdrop: action.payload
+            }
+        case SHOW_MODAL:
+            return {
+                ...state,
+                showModal: action.payload
+            }
         case SET_ID:
             return {
                 ...state,
@@ -39,7 +59,8 @@ export default ( state = initialState, action: ProductAction) => {
         case CREATE_PRODUCT:
             return {
                 ...state,
-                product: action.payload 
+                product: action.payload,
+                feature_array: [] 
             }
         case SET_TASK:
             return{
@@ -92,11 +113,6 @@ export default ( state = initialState, action: ProductAction) => {
                 ...state,
                 loading: false
             }
-        case SET_STOCK:
-            return {
-                ...state,
-                stock: action.payload
-            }
         case CREATE_STOCK:
             return {
                 ...state,
@@ -106,6 +122,18 @@ export default ( state = initialState, action: ProductAction) => {
             return {
                 ...state,
                 stock_array: action.payload
+            }
+        case SET_STOCK_TO_CHANGE:
+            return {
+                ...state,
+                stockToChange: action.payload,
+                stockToChangeID: action.payload2
+
+            }
+        case UPDATE_STOCK:
+            return {
+                ...state,
+                stock: action.payload
             }
         default:
             return state;

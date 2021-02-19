@@ -7,20 +7,23 @@ export const NEED_VERIFICATION = 'NEED_VERIFICATION';
 export const SET_SUCCESS = 'SET_SUCCESS';
 //Product management
 export const SET_FEATURE_ARRAY = 'SET_FEATURE_ARRAY';
-export const SET_IDS_ARRAY = 'SET_IDS_ARRAY';
+export const SET_PRODUCT_IDS_ARRAY = 'SET_PRODUCT_IDS_ARRAY';
 export const SET_ID = 'SET_ID';
 export const SET_PRODUCT_FAIL = 'SET_PRODUCT_FAIL';
 export const SET_PRODUCT_LOADING = 'SET_PRODUCT_LOADING';
 //UI
 export const SET_BACKDROP = 'SET_BACKDROP';
+export const SET_GLOBAL_BACKDROP = 'SET_GLOBAL_BACKDROP';
 export const SET_TASK = 'SET_TASK';
 export const SET_NEWTASK = 'SET_NEWTASK';
 export const SET_PAGE = 'SET_PAGE';
-
+export const SHOW_MODAL = 'SHOW_MODAL';
 //Stock
-export const SET_STOCK = 'SET_STOCK';
 export const CREATE_STOCK = 'CREATE_STOCK';
 export const LIST_STOCK = 'LIST_STOCK';
+export const SET_STOCK_TO_CHANGE = 'SET_STOCK_TO_CHANGE';
+export const UPDATE_STOCK = 'UPDATE_STOCK';
+export const SET_STOCK_IDS_ARRAY = 'SET_STOCK_IDS_ARRAY';
 //Products
 export const SET_PRODUCT = 'SET_PRODUCT';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
@@ -55,8 +58,11 @@ export interface Stock {
 }
 
 export interface ProductState {
-    itemIDs: string[];
+    productIDs: string[];
+    stockIDs: string[];
     stock: Stock | null;
+    stockToChange: Stock | null;
+    stockToChangeID: string | null;
     product: Product | null;
     error: '';
     loading: false;
@@ -65,6 +71,8 @@ export interface ProductState {
     task: "Create" | "Update" | "Delete" | "View" | "";
     page: "Browse" | "About" | "ProductManagement" | "SignIn" | "SignUp" | "Dashboard" | "/" | "";
     backdrop: boolean;
+    globalBackdrop: boolean;
+    showModal: false;
     feature_array: string[] | null;
 }
 
@@ -139,13 +147,17 @@ SetSuccessAction;
 
 //Actions - Product
 
-
-interface setIDs{
-    type: typeof SET_IDS_ARRAY
+interface setStockIDs {
+    type: typeof SET_STOCK_IDS_ARRAY
     payload: string[]
 }
 
-interface setFeatureArray{
+interface setProductIDs {
+    type: typeof SET_PRODUCT_IDS_ARRAY
+    payload: string[]
+}
+
+interface setFeatureArray {
     type: typeof SET_FEATURE_ARRAY
     payload: string[]
 }
@@ -157,6 +169,11 @@ interface setID {
 
 interface setBackdrop {
     type: typeof SET_BACKDROP
+    payload: boolean
+}
+
+interface setGlobalBackdrop {
+    type: typeof SET_GLOBAL_BACKDROP
     payload: boolean
 }
 
@@ -208,11 +225,6 @@ interface productRequestFail {
     type: typeof SET_PRODUCT_FAIL
 }
 
-interface setStock {
-    type: typeof SET_STOCK
-    payload: Stock;
-}
-
 interface createStock {
     type: typeof CREATE_STOCK
     payload: Stock;
@@ -220,19 +232,39 @@ interface createStock {
 
 interface listStock {
     type: typeof LIST_STOCK
-    payload: Stock[];
+    payload: Stock[]
+}
+
+interface setStockToChange {
+    type: typeof SET_STOCK_TO_CHANGE
+    payload: Stock
+    payload2: string
+}
+
+interface setShowModal {
+    type: typeof SHOW_MODAL;
+    payload: boolean;
+}
+
+interface updateStock {
+    type: typeof UPDATE_STOCK;
+    payload: Stock;
 }
 
 export type ProductAction =
+setShowModal |
+setStockToChange |
 listStock |
 createStock |
-setStock |
+updateStock |
 productLoading |
 productRequestFail |
-setIDs | 
+setProductIDs | 
+setStockIDs |
 setFeatureArray |
 setID |
 setBackdrop |
+setGlobalBackdrop |
 setPage |
 setTask |
 setProduct |

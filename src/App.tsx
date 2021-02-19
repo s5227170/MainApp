@@ -16,11 +16,11 @@ import ProductManagement from './components/pages/ProductManagement';
 import PrivateRoute from './components/auth/PrivateRoute';
 import PublicRoute from './components/auth/PublicRoute';
 import AdminRoute from './components/auth/AdminRoute';
+import MultiRoute from './components/auth/MultiRoute';
 import Loader from './components/UI/Loader/Loader';
 import firebase from './firebase/config';
 import { getUserById, setLoading, setNeedVerification } from './store/actions/authActions';
 import { RootState } from './store';
-import MultiRoute from './components/auth/MultiRoute';
 
 
 const App: FC = () => {

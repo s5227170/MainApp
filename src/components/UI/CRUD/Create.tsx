@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, FormEvent, ChangeEvent} from 'react';
+import React, { FC, useState, useEffect, FormEvent, ChangeEvent, Dispatch} from 'react';
 import { useSelector, useDispatch} from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import CurrencyFormat from 'react-currency-format';
@@ -7,7 +7,7 @@ import firebase from '../../../firebase/config';
 import Button from '../Button/Button';
 import Message from '../Message/Message';
 import { RootState } from '../../../store';
-import { createproduct, createstock, deletefeature, setfeature, settask } from '../../../store/actions/productActions';
+import { createproduct, deletefeature, listproducts, liststock, setfeature, settask } from '../../../store/actions/productActions';
 import { setError } from '../../../store/actions/productActions';
 import {  useHistory } from 'react-router';
 import Features from '../Features/Features';
@@ -34,6 +34,7 @@ const Create: FC = () => {
     const [filled, setFilled] = useState(true);
     //controlls the amount of inputs and validates
     const [amount, setAmount] = useState(0);
+    const [completeAmount, setCompleteAmoint] = useState(0);
     //-------------
     const [title, setTitle] = useState('');
     const [type, setType]= useState("");
@@ -68,7 +69,7 @@ const Create: FC = () => {
         e.preventDefault();
         setValidationLoading(true)
 
-        if(amount <3){
+        if(completeAmount <3){
             alert("You need at least 3 features in order to submit this product! If there already are 3, save themand try submitting again.")
         }else if(!fileSelected){
             alert("Product needs to have an avatar!")
@@ -86,19 +87,19 @@ const Create: FC = () => {
             await fileRef.put(fileSelected)
             const fileURL = await fileRef.getDownloadURL()
             
+            console.log(stock)
 
             setLoading(true);
             let id=uuid();
             if(feature_array){
-                    dispatch(createproduct({id, title, type, feature_array, fire, description, avatar: fileURL, price, reduced, old_price, new_price, date }));
-                    dispatch(createstock(stock))
+                    dispatch(createproduct({id, title, type, feature_array, fire, description, avatar: fileURL, price, reduced, old_price, new_price, date }))
+
             }
             setTimeout(() => {
                 dispatch(settask(""))
             }, 1500);
         }
     }
-
 
     const reducedHandler = (e: FormEvent<HTMLSelectElement>) => {
         e.preventDefault();
@@ -137,6 +138,7 @@ const Create: FC = () => {
     const removeFeature = () => {
         if(amount > 0){
             setAmount(amount-1);
+            setCompleteAmoint(completeAmount-1)
             dispatch(deletefeature(feature_array))
         }
     }
@@ -158,7 +160,7 @@ const Create: FC = () => {
         setLoading2(true)
         dispatch(setfeature(currentWord, feature_array));
         setFilled(true)
-        
+        setCompleteAmoint(completeAmount+1)        
     }
 
     const inputDataHandler = ({target}: {target: EventTarget | null}) => {
@@ -187,20 +189,11 @@ const Create: FC = () => {
                 <h3>Features</h3>
                 <hr className={classes.divider}></hr>
                 <div className={classes.featureManagement}>
-                    {/* Buttons controlling the feature amount */}
                     <Button className="custom-btn" text="Add" onClick={addFeature} disabled={!loading2}/>
                     <Button className="custom-btn" text="Remove" onClick={removeFeature} disabled={loading3}/>
                     <Button className="custom-btn" text="Save" onClick={saveFeature} disabled={!loading3}/>
-                    {/* <button  className={style["custom-btn"]} onClick={addFeature} disabled={!loading2}>Add</button>
-                    <button  className={style["custom-btn"]} onClick={removeFeature} disabled={loading3}>Remove</button>
-                    <button  className={style["custom-btn"]} onClick={saveFeature} disabled={!loading3}>Save</button> */}
                 </div>
-                    {/* Add the features component here, it must get the number of fields, depending on the
-                    parameter given, it should do this dynamically */}
                         <Features ids="feats" number={amount} onBlur={inputDataHandler} preview={false}/>
-                    {/* ---- */}
-                
-            
                 <h3>Product Image</h3>
                 <hr className={classes.divider}></hr>
                 <div className={classes.imageManagement}>

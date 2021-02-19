@@ -14,13 +14,14 @@ const Header: FC = () => {
     const dispatch = useDispatch();
     const { authenticated } = useSelector((state: RootState) => state.auth);
     const { page } = useSelector((state: RootState) => state.prod);
+    const { showModal } = useSelector((state: RootState) => state.prod);
 
     const logoutClickHandler = () => {
         dispatch(signout());
     }
     return(
         <nav>
-            <div className={classes.section}>
+            <div className={!showModal? classes.section : classes.fix}>
                 <div className={classes.navbarLogo}>
                     <NavLink activeClassName={classes.logoLink} to={!authenticated ? "/" : "/dashboard"}><img className={classes.logo}  src={logo} alt="logo"/></NavLink>
                 </div>

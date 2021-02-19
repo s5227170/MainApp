@@ -1,6 +1,6 @@
 .section{
     width: 500px;
-    height: 300px;
+    height: auto;
     background:  #f7f4eb;
     padding: 10px;
     text-align: center;
@@ -11,27 +11,32 @@
     border-radius: 4px;
     box-shadow: -1px 1px 5px 6px rgba(136,128,128,0.75);
 
+    & h2 {
+        color: #214486;
+    }
     .buttonContainer{
         width: 70%;
         margin: auto;
         height: auto;
         display: flex;
         justify-content: space-between;
-        padding-top: 100px;
+        padding: 30px;
     }
     .accept{
         width: 90px;
         height: 30px;
-        background: #27a032;
+        background: #39a34b;
         border-radius: 4px;
         border: 2px double #1c8d25;
-        color: #ffffff;
+        color: #214486;
+        font-weight: bold;
         outline: none;
     }
     .accept:hover{
-        background: lighten( #27a032, 10%);
+        background: lighten( #27a032, 5%);
         cursor: pointer;
-        font-size: medium;
+        font-size: 15px;
+        transition: all .2s ease-in-out;
     }
     .accept:active{
         transform: scale(0.98);
@@ -42,13 +47,15 @@
         background: #be4747;
         border-radius: 4px;
         border: 2px double #751f1f;
-        color: #ffffff;
+        color: #214486;
+        font-weight: bold;
         outline: none;
     }
     .decline:hover{
-        background: darken( #be4747, 10%);
+        background: darken( #be4747, 5%);
         cursor: pointer;
-        font-size: medium;
+        font-size: 15px;
+        transition: all .2s ease-in-out;
     }
     .decline:active{
         transform: scale(0.98);
